@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2246%22 fill=%22%231a0f3d%22/%3E%3Ccircle cx=%2242%22 cy=%2242%22 r=%2226%22 fill=%22%23a78bfa%22/%3E%3Ccircle cx=%2255%22 cy=%2238%22 r=%2222%22 fill=%22%231a0f3d%22/%3E%3Ccircle cx=%2272%22 cy=%2228%22 r=%223%22 fill=%22%23ffd166%22/%3E%3Ccircle cx=%2282%22 cy=%2248%22 r=%222%22 fill=%22%23ffd166%22/%3E%3C/svg%3E">
+<title>Moment Zero — what the world looked like the day you arrived</title>
+<meta name="description" content="Enter your birth date to see the #1 song, prices, moon phase, zodiac, birthstone, generation, and how far you've traveled through space since you were born.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 50% -10%,#1a0f3d 0%,#0d0620 60%,#050310 100%);color:#f1ebff;font:16px/1.55 'Inter',system-ui,sans-serif}
+body{padding:28px 16px 60px}
+.wrap{max-width:900px;margin:0 auto;position:relative}
+#langWrap{position:fixed;top:14px;right:14px;z-index:50}
+[dir=rtl] #langWrap{right:auto;left:14px}
+#langBtn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:#e0d4ff;border-radius:50%;width:38px;height:38px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#langBtn:hover{background:rgba(255,255,255,.12)}
+#langMenu{display:none;position:absolute;top:44px;right:0;background:#180f30;border:1px solid #4a3d80;border-radius:10px;padding:6px;min-width:140px;box-shadow:0 10px 28px -8px #000c;z-index:20}
+[dir=rtl] #langMenu{right:auto;left:0}
+#langMenu.open{display:block}
+#langMenu button{display:block;width:100%;text-align:left;background:none;border:0;color:#f1ebff;padding:7px 10px;border-radius:7px;cursor:pointer;font:500 13.5px 'Inter'}
+[dir=rtl] #langMenu button{text-align:right}
+#langMenu button:hover{background:rgba(167,139,250,.2)}
+#langMenu button.on{color:#a78bfa;font-weight:700}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,5vw,46px);text-align:center;margin:6px 0 2px;background:linear-gradient(90deg,#ffd166,#a78bfa,#ff6b9d);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.tag{text-align:center;color:#b8a8d9;margin:0 0 20px;font-size:15px;position:relative;z-index:2}
+.hero{position:relative;padding:10px 0 8px;overflow:hidden}
+.stars{position:absolute;inset:-20px -16px auto -16px;height:260px;z-index:0;pointer-events:none;
+ background-image:radial-gradient(2px 2px at 10% 20%,#fff,transparent),radial-gradient(1.5px 1.5px at 25% 60%,#fff,transparent),radial-gradient(2px 2px at 40% 15%,#fff,transparent),radial-gradient(1px 1px at 55% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 70% 30%,#fff,transparent),radial-gradient(2px 2px at 85% 55%,#fff,transparent),radial-gradient(1px 1px at 95% 20%,#fff,transparent),radial-gradient(1.5px 1.5px at 15% 85%,#fff,transparent),radial-gradient(1px 1px at 65% 90%,#fff,transparent),radial-gradient(2px 2px at 30% 40%,#fff,transparent);
+ opacity:.35;animation:twinkle 4s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.2}to{opacity:.55}}
+.divider{display:flex;align-items:center;justify-content:center;gap:10px;color:#a78bfa;font-size:13px;margin:4px 0 18px;position:relative;z-index:2}
+.divider span{height:1px;width:70px;background:linear-gradient(90deg,transparent,#a78bfaaa,transparent)}
+p.intro{text-align:center;color:#c9b8e8;margin:0 auto 14px;font-size:14.5px;max-width:560px;line-height:1.75;position:relative;z-index:2}
+p.intro.accent{color:#ffd166;font-weight:600;font-size:15px;max-width:480px;margin-bottom:28px}
+.panel{background:linear-gradient(160deg,rgba(8,46,50,.55),rgba(4,22,26,.6));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:22px;margin:0 auto 20px;backdrop-filter:blur(10px);box-shadow:0 10px 30px -10px #000a}
+.form-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:12px;color:#c3aee8;letter-spacing:.3px}
+.field input{background:#180f30;border:1px solid #4a3d80;color:#f1ebff;padding:9px 10px;border-radius:9px;font:inherit;font-size:14px}
+.field input:focus{outline:none;border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.3)}
+button#go{background:linear-gradient(135deg,#ff6b9d,#8b5cf6);color:#fff;border:0;border-radius:10px;padding:11px 22px;font:600 14px 'Inter';cursor:pointer;letter-spacing:.3px;box-shadow:0 6px 18px -4px rgba(139,92,246,.5)}
+button#go:hover{filter:brightness(1.1)}
+button#go:active{transform:translateY(1px)}
+#err{color:#ff8a8a;text-align:center;font-size:13px;min-height:18px;margin-top:10px}
+#results{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:linear-gradient(160deg,rgba(8,46,50,.55),rgba(4,22,26,.6));border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px 20px;box-shadow:0 10px 30px -12px #000a}
+.card h3{margin:0 0 10px;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#c9b8ff;display:flex;align-items:center;gap:7px}
+.card .big{font-family:'Fraunces',serif;font-size:21px;font-weight:700;color:#fff;line-height:1.3}
+.card .sub{color:#b8a8d9;font-size:13px;margin-top:4px}
+.ticker{font-variant-numeric:tabular-nums;font-size:15px;color:#ffd166}
+table.price{width:100%;border-collapse:collapse;font-size:13.5px}
+table.price td{padding:4px 2px;border-bottom:1px solid rgba(255,255,255,.07)}
+table.price td:last-child{text-align:right;color:#ffd166;font-weight:600}
+[dir=rtl] table.price td:last-child{text-align:left}
+.note{font-size:11.5px;color:#6a5a95;margin-top:10px;line-height:1.5}
+.hlist{display:flex;flex-direction:column;gap:9px;margin-top:2px}
+.hrow{font-size:13.5px;color:#e8defa;line-height:1.5}
+.hrow b{color:#ffd166;font-weight:700;margin-right:6px}
+[dir=rtl] .hrow b{margin-right:0;margin-left:6px}
+.hrow.muted{color:#9d8cc9;font-style:italic}
+footer{text-align:center;color:#4a3d70;font-size:12px;margin-top:36px}
+.sec{font-family:'Fraunces',serif;font-size:19px;color:#ede4ff;margin:38px 0 4px;text-align:center}
+.secSub{color:#9d8cc9;font-size:13px;text-align:center;margin:0 0 18px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6}
+.grid{margin-bottom:6px}
+.spin{display:inline-block;width:11px;height:11px;border:2px solid #a78bfa;border-top-color:transparent;border-radius:50%;animation:sp .7s linear infinite;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+a{color:#ffd166}
+[dir=rtl] .card h3{flex-direction:row-reverse}
+#cutscene{position:fixed;inset:0;z-index:999;background:radial-gradient(circle at 50% 40%,#241247,#0d0620 70%);display:none;align-items:center;justify-content:center;flex-direction:column;overflow:hidden}
+#cutscene.show{display:flex}
+#csOrbit{position:relative;width:180px;height:180px;margin-bottom:34px}
+#csOrbit .ring{position:absolute;inset:0;border:1px solid rgba(167,139,250,.3);border-radius:50%;animation:csspin 6s linear infinite}
+#csOrbit .ring:nth-child(2){inset:22px;border-color:rgba(255,209,102,.3);animation-duration:4s;animation-direction:reverse}
+#csOrbit .ring:nth-child(3){inset:44px;border-color:rgba(255,107,157,.3);animation-duration:3s}
+#csOrbit .core{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;animation:cspulse 1.6s ease-in-out infinite}
+@keyframes csspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes cspulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+#csText{color:#eafff6;font-family:Fraunces,serif;font-size:19px;min-height:30px;text-align:center;padding:0 24px;transition:opacity .25s}
+#csBarWrap{width:min(320px,70vw);height:5px;border-radius:4px;background:rgba(255,255,255,.12);margin-top:26px;overflow:hidden}
+#csBar{height:100%;width:0%;background:linear-gradient(90deg,#a78bfa,#ffd166);transition:width .4s linear}
+#csSkip{margin-top:22px;background:none;border:1px solid rgba(255,255,255,.25);color:#c9b8e8;padding:7px 18px;border-radius:20px;font-size:13px;cursor:pointer;font-family:Inter,sans-serif}
+#csSkip:hover{border-color:#a78bfa;color:#a78bfa}
+</style></head>
+<body><div class="wrap">
+<div id="cutscene">
+ <div id="csOrbit"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="core">🌍</div></div>
+ <div id="csText"></div>
+ <div id="csBarWrap"><div id="csBar"></div></div>
+ <button id="csSkip"></button>
+</div>
+<div id="langWrap">
+ <button id="langBtn" title="Language / שפה / Idioma">🌐</button>
+ <div id="langMenu"></div>
+</div>
+<div class="hero">
+ <div class="stars" id="stars"></div>
+ <h1 id="t_title">✦ Born On ✦</h1>
+ <p class="tag" id="t_tag">What the world looked like the moment you showed up</p>
+ <div class="divider"><span></span>✦<span></span></div>
+ <p class="intro" id="t_intro1"></p>
+ <p class="intro" id="t_intro2"></p>
+ <p class="intro accent" id="t_intro3"></p>
+</div>
+
+<div class="panel">
+ <div class="form-row">
+  <div class="field"><label id="t_dateLabel">Birth date</label><input type="date" id="bdate"></div>
+  <div class="field"><label id="t_timeLabel">Birth time (optional)</label><input type="time" id="btime" value="12:00"></div>
+  <button id="go">Reveal it ✨</button>
+ </div>
+ <div id="err"></div>
+</div>
+
+<div id="results">
+ <h2 class="sec" id="t_secIdentity"></h2><p class="secSub" id="t_secIdentitySub"></p>
+ <div class="grid" id="g1"></div>
+ <h2 class="sec" id="t_secBody"></h2><p class="secSub" id="t_secBodySub"></p>
+ <div class="grid" id="g2" style="grid-template-columns:1fr"></div>
+ <h2 class="sec" id="t_secWorld"></h2><p class="secSub" id="t_secWorldSub"></p>
+ <div class="grid" id="g3"></div>
+ <h2 class="sec" id="t_secPrices"></h2><p class="secSub" id="t_secPricesSub"></p>
+ <div class="grid" id="g4"></div>
+ <h2 class="sec" id="t_secCosmos"></h2><p class="secSub" id="t_secCosmosSub"></p>
+ <div class="grid" id="g5"></div>
+ <h2 class="sec" id="t_secHistory"></h2><p class="secSub" id="t_secHistorySub"></p>
+ <div class="grid" id="g6" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))"></div>
+</div>
+
+<footer id="t_footer">Made for fun — song/chart data via Billboard archives when available, prices are rough U.S. national averages.</footer>
+</div>
+<script>
+const I18N_DATA = {"LANGS": ["en", "he", "es", "fr", "de", "it", "pt", "ru", "ar", "zh"], "LANG_NAMES": {"en": "English", "he": "עברית", "es": "Español", "fr": "Français", "de": "Deutsch", "it": "Italiano", "pt": "Português", "ru": "Русский", "ar": "العربية", "zh": "中文"}, "RTL": ["ar", "he"], "UI": {"title": {"en": "✦ Moment Zero ✦", "he": "✦ רגע האפס ✦", "es": "✦ Momento Cero ✦", "fr": "✦ Instant Zéro ✦", "de": "✦ Moment Null ✦", "it": "✦ Momento Zero ✦", "pt": "✦ Momento Zero ✦", "ru": "✦ Нулевой момент ✦", "ar": "✦ اللحظة صفر ✦", "zh": "✦ 零时刻 ✦"}, "tag": {"en": "Turn back the clock. See the song, the prices, the sky, and the planet the moment you arrived.", "he": "סובבו את השעון אחורה. גלו את השיר, המחירים, השמיים והכוכב ברגע שהגעתם.", "es": "Retrocede el reloj. Descubre la canción, los precios, el cielo y el planeta en el instante en que llegaste.", "fr": "Remontez le temps. Découvrez la chanson, les prix, le ciel et la planète au moment de votre arrivée.", "de": "Dreh die Uhr zurück. Entdecke den Song, die Preise, den Himmel und den Planeten in dem Moment, als du ankamst.", "it": "Fai tornare indietro le lancette. Scopri la canzone, i prezzi, il cielo e il pianeta nel momento in cui sei arrivato.", "pt": "Volte no tempo. Descubra a música, os preços, o céu e o planeta no instante em que você chegou.", "ru": "Поверните время вспять. Узнайте песню, цены, небо и планету в момент вашего появления.", "ar": "أعد عقارب الساعة إلى الوراء. اكتشف الأغنية والأسعار والسماء والكوكب في لحظة وصولك.", "zh": "把时钟拨回去。看看你降临那一刻的歌曲、物价、天空和整个星球。"}, "dateLabel": {"en": "Birth date", "he": "תאריך לידה", "es": "Fecha de nacimiento", "fr": "Date de naissance", "de": "Geburtsdatum", "it": "Data di nascita", "pt": "Data de nascimento", "ru": "Дата рождения", "ar": "تاريخ الميلاد", "zh": "出生日期"}, "timeLabel": {"en": "Birth time (optional)", "he": "שעת לידה (אופציונלי)", "es": "Hora de nacimiento (opcional)", "fr": "Heure de naissance (facultatif)", "de": "Geburtszeit (optional)", "it": "Ora di nascita (opzionale)", "pt": "Hora de nascimento (opcional)", "ru": "Время рождения (необязательно)", "ar": "وقت الميلاد (اختياري)", "zh": "出生时间（可选）"}, "go": {"en": "Reveal it ✨", "he": "גלו לי ✨", "es": "Revelar ✨", "fr": "Révéler ✨", "de": "Enthüllen ✨", "it": "Rivela ✨", "pt": "Revelar ✨", "ru": "Показать ✨", "ar": "اكشف ✨", "zh": "揭晓 ✨"}, "errDate": {"en": "Pick a date first.", "he": "בחרו תאריך קודם.", "es": "Elige primero una fecha.", "fr": "Choisissez d'abord une date.", "de": "Wähle zuerst ein Datum.", "it": "Scegli prima una data.", "pt": "Escolha primeiro uma data.", "ru": "Сначала выберите дату.", "ar": "اختر تاريخًا أولاً.", "zh": "请先选择日期。"}, "errInvalid": {"en": "That date isn't valid.", "he": "התאריך לא תקין.", "es": "Esa fecha no es válida.", "fr": "Cette date n'est pas valide.", "de": "Dieses Datum ist ungültig.", "it": "Quella data non è valida.", "pt": "Essa data não é válida.", "ru": "Эта дата недействительна.", "ar": "هذا التاريخ غير صالح.", "zh": "该日期无效。"}, "song": {"en": "#1 song that week", "he": "השיר הכי פופולרי באותו שבוע", "es": "Canción n.º 1 esa semana", "fr": "Chanson n°1 cette semaine-là", "de": "Nr.-1-Song jener Woche", "it": "Canzone n.1 quella settimana", "pt": "Música nº1 naquela semana", "ru": "Песня №1 той недели", "ar": "الأغنية الأولى في ذلك الأسبوع", "zh": "当周冠军单曲"}, "western": {"en": "Western zodiac", "he": "מזל מערבי", "es": "Zodíaco occidental", "fr": "Zodiaque occidental", "de": "Westliches Sternzeichen", "it": "Zodiaco occidentale", "pt": "Zodíaco ocidental", "ru": "Западный знак зодиака", "ar": "البرج الغربي", "zh": "西方星座"}, "chinese": {"en": "Chinese zodiac", "he": "מזל סיני", "es": "Zodíaco chino", "fr": "Zodiaque chinois", "de": "Chinesisches Tierkreiszeichen", "it": "Zodiaco cinese", "pt": "Zodíaco chinês", "ru": "Китайский зодиак", "ar": "البرج الصيني", "zh": "生肖"}, "moon": {"en": "Moon phase", "he": "שלב הירח", "es": "Fase lunar", "fr": "Phase lunaire", "de": "Mondphase", "it": "Fase lunare", "pt": "Fase da lua", "ru": "Фаза луны", "ar": "طور القمر", "zh": "月相"}, "president": {"en": "In the White House", "he": "בבית הלבן", "es": "En la Casa Blanca", "fr": "À la Maison-Blanche", "de": "Im Weißen Haus", "it": "Alla Casa Bianca", "pt": "Na Casa Branca", "ru": "В Белом доме", "ar": "في البيت الأبيض", "zh": "白宫在任总统"}, "presidentSub": {"en": "U.S. President at the time", "he": "נשיא ארה״ב באותו זמן", "es": "Presidente de EE. UU. en ese momento", "fr": "Président des É.-U. à l'époque", "de": "US-Präsident zu dieser Zeit", "it": "Presidente USA in quel momento", "pt": "Presidente dos EUA na época", "ru": "Президент США в то время", "ar": "رئيس الولايات المتحدة آنذاك", "zh": "当时的美国总统"}, "dow": {"en": "Day of week", "he": "יום בשבוע", "es": "Día de la semana", "fr": "Jour de la semaine", "de": "Wochentag", "it": "Giorno della settimana", "pt": "Dia da semana", "ru": "День недели", "ar": "يوم الأسبوع", "zh": "星期几"}, "birthstone": {"en": "Birthstone", "he": "אבן החודש", "es": "Piedra natal", "fr": "Pierre de naissance", "de": "Geburtsstein", "it": "Pietra portafortuna", "pt": "Pedra do mês", "ru": "Камень по месяцу рождения", "ar": "حجر الميلاد", "zh": "诞生石"}, "flower": {"en": "Birth flower", "he": "פרח החודש", "es": "Flor del mes", "fr": "Fleur de naissance", "de": "Geburtsblume", "it": "Fiore del mese", "pt": "Flor do mês", "ru": "Цветок месяца рождения", "ar": "زهرة الميلاد", "zh": "诞生花"}, "generation": {"en": "Generation", "he": "דור", "es": "Generación", "fr": "Génération", "de": "Generation", "it": "Generazione", "pt": "Geração", "ru": "Поколение", "ar": "الجيل", "zh": "世代"}, "season": {"en": "Season born (N. hemisphere)", "he": "עונת הלידה (חצי כדור צפוני)", "es": "Estación de nacimiento (hem. norte)", "fr": "Saison de naissance (hém. nord)", "de": "Geburtsjahreszeit (Nordhalbkugel)", "it": "Stagione di nascita (emisf. nord)", "pt": "Estação de nascimento (hem. norte)", "ru": "Сезон рождения (сев. полушарие)", "ar": "فصل الميلاد (نصف الكرة الشمالي)", "zh": "出生季节（北半球）"}, "nextBday": {"en": "Next birthday in", "he": "ליום ההולדת הבא", "es": "Próximo cumpleaños en", "fr": "Prochain anniversaire dans", "de": "Nächster Geburtstag in", "it": "Prossimo compleanno tra", "pt": "Próximo aniversário em", "ru": "Следующий день рождения через", "ar": "عيد الميلاد القادم خلال", "zh": "距下次生日"}, "days": {"en": "days", "he": "ימים", "es": "días", "fr": "jours", "de": "Tage", "it": "giorni", "pt": "dias", "ru": "дней", "ar": "أيام", "zh": "天"}, "orbit": {"en": "Trip around the sun", "he": "מסע סביב השמש", "es": "Vuelta alrededor del sol", "fr": "Tour autour du soleil", "de": "Reise um die Sonne", "it": "Giro intorno al sole", "pt": "Volta ao redor do sol", "ru": "Путешествие вокруг Солнца", "ar": "رحلة حول الشمس", "zh": "绕太阳旅程"}, "orbitSub": {"en": "Distance traveled through space since birth, riding Earth's orbit", "he": "המרחק שעברת בחלל מאז שנולדת, על מסלול כדור הארץ", "es": "Distancia recorrida por el espacio desde tu nacimiento, en la órbita terrestre", "fr": "Distance parcourue dans l'espace depuis votre naissance, sur l'orbite terrestre", "de": "Strecke, die du seit deiner Geburt im Erdorbit zurückgelegt hast", "it": "Distanza percorsa nello spazio dalla tua nascita, sull'orbita terrestre", "pt": "Distância percorrida no espaço desde o seu nascimento, na órbita da Terra", "ru": "Расстояние, пройденное в космосе с момента рождения, по орбите Земли", "ar": "المسافة التي قطعتها في الفضاء منذ ولادتك، عبر مدار الأرض", "zh": "自出生以来随地球轨道在太空中移动的距离"}, "alive": {"en": "Alive since", "he": "בחיים מאז", "es": "Con vida desde", "fr": "En vie depuis", "de": "Am Leben seit", "it": "In vita da", "pt": "Vivo desde", "ru": "Живёшь уже", "ar": "على قيد الحياة منذ", "zh": "存活时间"}, "years": {"en": "years", "he": "שנים", "es": "años", "fr": "ans", "de": "Jahre", "it": "anni", "pt": "anos", "ru": "лет", "ar": "سنوات", "zh": "年"}, "heartbeats": {"en": "heartbeats so far (~70 bpm resting)", "he": "פעימות לב עד כה (~70 לדקה במנוחה)", "es": "latidos hasta ahora (~70 lpm en reposo)", "fr": "battements de cœur jusqu'ici (~70 bpm au repos)", "de": "Herzschläge bisher (~70 bpm in Ruhe)", "it": "battiti finora (~70 bpm a riposo)", "pt": "batimentos até agora (~70 bpm em repouso)", "ru": "ударов сердца на данный момент (~70 уд/мин в покое)", "ar": "نبضة قلب حتى الآن (~70 نبضة/دقيقة أثناء الراحة)", "zh": "至今心跳次数（静息约70次/分）"}, "breaths": {"en": "breaths", "he": "נשימות", "es": "respiraciones", "fr": "respirations", "de": "Atemzüge", "it": "respiri", "pt": "respirações", "ru": "вдохов", "ar": "أنفاس", "zh": "次呼吸"}, "prices": {"en": "Prices around", "he": "מחירים בסביבות", "es": "Precios alrededor de", "fr": "Prix aux alentours de", "de": "Preise um", "it": "Prezzi intorno al", "pt": "Preços por volta de", "ru": "Цены примерно в", "ar": "الأسعار في حوالي", "zh": "大约在"}, "pricesNote": {"en": "Interpolated from historical U.S. national averages — not specific to your location or exact day.", "he": "מבוסס על ממוצעים היסטוריים אמריקאים — לא ספציפי למיקום שלך או ליום המדויק.", "es": "Interpolado de promedios históricos nacionales de EE. UU.; no específico de tu ubicación o día exacto.", "fr": "Interpolé à partir des moyennes nationales historiques américaines — pas spécifique à votre lieu ou jour exact.", "de": "Interpoliert aus historischen US-Landesdurchschnitten — nicht spezifisch für deinen Ort oder genauen Tag.", "it": "Interpolato dalle medie storiche nazionali USA — non specifico per la tua posizione o il giorno esatto.", "pt": "Interpolado de médias históricas nacionais dos EUA — não específico do seu local ou dia exato.", "ru": "Рассчитано на основе исторических средних показателей США — не привязано к вашему месту или точному дню.", "ar": "مُقدَّر من المتوسطات الوطنية الأمريكية التاريخية — غير خاص بموقعك أو يومك بالتحديد.", "zh": "根据美国历史平均数据估算，并非针对您所在地或确切日期。"}, "before100": {"en": "Before the Hot 100", "he": "לפני מצעד הביליבורד", "es": "Antes del Hot 100", "fr": "Avant le Hot 100", "de": "Vor den Hot 100", "it": "Prima della Hot 100", "pt": "Antes da Hot 100", "ru": "До появления Hot 100", "ar": "قبل قائمة Hot 100", "zh": "Hot 100 榜单之前"}, "before100sub": {"en": "Billboard's Hot 100 chart started Aug 4, 1958 — showing the era's defining hit instead:", "he": "מצעד ה-Hot 100 התחיל ב-4 באוגוסט 1958 — הנה הלהיט המוביל של התקופה:", "es": "El Hot 100 de Billboard comenzó el 4 de agosto de 1958; en su lugar, el éxito definitorio de la época:", "fr": "Le classement Hot 100 de Billboard a débuté le 4 août 1958 — voici plutôt le tube emblématique de l'époque :", "de": "Die Billboard-Hot-100-Charts starteten am 4. August 1958 — stattdessen der prägende Hit jener Ära:", "it": "La classifica Hot 100 di Billboard è iniziata il 4 agosto 1958 — ecco invece il successo simbolo dell'epoca:", "pt": "A Hot 100 da Billboard começou em 4 de agosto de 1958 — mostrando em vez disso o grande sucesso da época:", "ru": "Чарт Billboard Hot 100 появился 4 августа 1958 года — вот главный хит той эпохи:", "ar": "بدأت قائمة Hot 100 في 4 أغسطس 1958 — إليك أبرز أغنية في تلك الحقبة بدلاً منها:", "zh": "Billboard Hot 100 榜单始于1958年8月4日——以下是那个时代的代表金曲："}, "offline": {"en": "(offline estimate)", "he": "(הערכה לא מקוונת)", "es": "(estimación sin conexión)", "fr": "(estimation hors ligne)", "de": "(Offline-Schätzung)", "it": "(stima offline)", "pt": "(estimativa offline)", "ru": "(оценка офлайн)", "ar": "(تقدير غير متصل)", "zh": "（离线估算）"}, "footer": {"en": "Made for fun — song/chart data via Billboard archives when available, prices are rough U.S. national averages.", "he": "נוצר בשביל הכיף — נתוני שירים מארכיון בילבורד כשזמין, המחירים הם הערכה גסה של ממוצעים אמריקאים.", "es": "Hecho por diversión: datos de canciones vía archivos de Billboard cuando están disponibles; los precios son promedios nacionales aproximados de EE. UU.", "fr": "Fait pour le plaisir — données de classement via les archives Billboard quand disponibles, les prix sont des moyennes nationales américaines approximatives.", "de": "Nur zum Spaß erstellt — Songdaten aus den Billboard-Archiven, sofern verfügbar; Preise sind grobe US-Landesdurchschnitte.", "it": "Creato per divertimento — dati delle classifiche dagli archivi Billboard quando disponibili, i prezzi sono medie nazionali USA approssimative.", "pt": "Feito por diversão — dados de músicas via arquivos da Billboard quando disponíveis, os preços são médias nacionais aproximadas dos EUA.", "ru": "Сделано для развлечения — данные о песнях из архивов Billboard, когда доступны; цены — приблизительные средние по США.", "ar": "صُنع للمتعة — بيانات الأغاني من أرشيف بيلبورد عند توفرها، والأسعار متوسطات وطنية أمريكية تقريبية.", "zh": "纯属娱乐之作——歌曲榜单数据来自 Billboard 存档（如可用），价格为美国全国大致平均值。"},
+"cs1": {"en":"Locating that exact moment in time\u2026","he":"\u05de\u05d0\u05ea\u05e8\u05d9\u05dd \u05d0\u05ea \u05d4\u05e8\u05d2\u05e2 \u05d4\u05de\u05d3\u05d5\u05d9\u05e7 \u05d1\u05d6\u05de\u05df\u2026","es":"Localizando ese instante exacto\u2026","fr":"Localisation de cet instant pr\u00e9cis\u2026","de":"Dieser genaue Moment wird gesucht\u2026","it":"Individuazione di quell\u2019istante esatto\u2026","pt":"Localizando aquele instante exato\u2026","ru":"\u041f\u043e\u0438\u0441\u043a \u0442\u043e\u0433\u043e \u0441\u0430\u043c\u043e\u0433\u043e \u043c\u043e\u043c\u0435\u043d\u0442\u0430\u2026","ar":"\u0628\u062d\u062b \u0639\u0646 \u0627\u0644\u0644\u062d\u0638\u0629 \u0627\u0644\u062f\u0642\u064a\u0642\u0629\u2026","zh":"\u5b9a\u4f4d\u90a3\u4e2a\u51c6\u786e\u77ac\u95f4\u2026"},
+"cs2": {"en":"Spinning the planet back\u2026","he":"\u05de\u05e1\u05d5\u05d5\u05d2\u05d9\u05dd \u05d0\u05ea \u05d4\u05db\u05d3\u05d5\u05e8 \u05d0\u05d7\u05d5\u05e8\u05d4\u2026","es":"Girando el planeta hacia atr\u00e1s\u2026","fr":"La plan\u00e8te tourne \u00e0 rebours\u2026","de":"Der Planet dreht sich zur\u00fcck\u2026","it":"Il pianeta torna indietro\u2026","pt":"Girando o planeta para tr\u00e1s\u2026","ru":"\u041f\u043b\u0430\u043d\u0435\u0442\u0430 \u043a\u0440\u0443\u0442\u0438\u0442\u0441\u044f \u0432\u0441\u043f\u044f\u0442\u044c\u2026","ar":"\u0627\u0644\u0643\u0648\u0643\u0628 \u064a\u062f\u0648\u0631 \u0644\u0644\u062e\u0644\u0641\u2026","zh":"\u5730\u7403\u6b63\u5728\u5012\u8f6c\u2026"},
+"cs3": {"en":"Tuning the radio to that week\u2026","he":"\u05de\u05db\u05d5\u05d5\u05e0\u05d9\u05dd \u05d0\u05ea \u05d4\u05e8\u05d3\u05d9\u05d5 \u05dc\u05d0\u05d5\u05ea\u05d5 \u05d4\u05e9\u05d1\u05d5\u05e2\u2026","es":"Sintonizando la radio de esa semana\u2026","fr":"Accord de la radio sur cette semaine-l\u00e0\u2026","de":"Das Radio wird auf diese Woche eingestellt\u2026","it":"Sintonizzazione della radio su quella settimana\u2026","pt":"Sintonizando o r\u00e1dio naquela semana\u2026","ru":"\u041d\u0430\u0441\u0442\u0440\u0430\u0438\u0432\u0430\u0435\u043c \u0440\u0430\u0434\u0438\u043e \u043d\u0430 \u0442\u0443 \u043d\u0435\u0434\u0435\u043b\u044e\u2026","ar":"\u0636\u0628\u0637 \u0627\u0644\u0631\u0627\u062f\u064a\u0648 \u0639\u0644\u0649 \u0630\u0644\u0643 \u0627\u0644\u0623\u0633\u0628\u0648\u0639\u2026","zh":"\u8c03\u6536\u6536\u97f3\u673a\u5230\u90a3\u4e00\u5468\u2026"},
+"cs4": {"en":"Reading the night sky\u2026","he":"\u05e7\u05d5\u05e8\u05d0\u05d9\u05dd \u05d0\u05ea \u05e9\u05de\u05d9 \u05d4\u05dc\u05d9\u05dc\u05d4\u2026","es":"Leyendo el cielo nocturno\u2026","fr":"Lecture du ciel nocturne\u2026","de":"Der Nachthimmel wird gelesen\u2026","it":"Lettura del cielo notturno\u2026","pt":"Lendo o c\u00e9u noturno\u2026","ru":"\u0421\u0447\u0438\u0442\u044b\u0432\u0430\u0435\u043c \u043d\u043e\u0447\u043d\u043e\u0435 \u043d\u0435\u0431\u043e\u2026","ar":"\u0642\u0631\u0627\u0621\u0629 \u0627\u0644\u0633\u0645\u0627\u0621 \u0627\u0644\u0644\u064a\u0644\u064a\u0629\u2026","zh":"\u89e3\u8bfb\u591c\u7a7a\u2026"},
+"cs5": {"en":"Checking the price of bread and gas\u2026","he":"\u05d1\u05d5\u05d3\u05e7\u05d9\u05dd \u05d0\u05ea \u05de\u05d7\u05d9\u05e8 \u05d4\u05dc\u05d7\u05dd \u05d5\u05d4\u05d3\u05dc\u05e7\u2026","es":"Comprobando el precio del pan y la gasolina\u2026","fr":"V\u00e9rification du prix du pain et de l\u2019essence\u2026","de":"Der Preis f\u00fcr Brot und Benzin wird gepr\u00fcft\u2026","it":"Verifica del prezzo del pane e della benzina\u2026","pt":"Verificando o pre\u00e7o do p\u00e3o e da gasolina\u2026","ru":"\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u0446\u0435\u043d\u044b \u043d\u0430 \u0445\u043b\u0435\u0431 \u0438 \u0431\u0435\u043d\u0437\u0438\u043d\u2026","ar":"\u0627\u0644\u062a\u062d\u0642\u0642 \u0645\u0646 \u0633\u0639\u0631 \u0627\u0644\u062e\u0628\u0632 \u0648\u0627\u0644\u0648\u0642\u0648\u062f\u2026","zh":"\u67e5\u9605\u9762\u5305\u548c\u6c7d\u6cb9\u7684\u4ef7\u683c\u2026"},
+"cs6": {"en":"Finding who was in charge\u2026","he":"\u05de\u05d0\u05ea\u05e8\u05d9\u05dd \u05de\u05d9 \u05e2\u05de\u05d3 \u05d1\u05e8\u05d0\u05e9\u2026","es":"Averiguando qui\u00e9n estaba al mando\u2026","fr":"Recherche de qui \u00e9tait au pouvoir\u2026","de":"Wer das Sagen hatte, wird ermittelt\u2026","it":"Alla ricerca di chi era al comando\u2026","pt":"Descobrindo quem estava no comando\u2026","ru":"\u0423\u0437\u043d\u0430\u0435\u043c, \u043a\u0442\u043e \u0431\u044b\u043b \u0443 \u0432\u043b\u0430\u0441\u0442\u0438\u2026","ar":"\u0627\u0644\u0628\u062d\u062b \u0639\u0646 \u0645\u0646 \u0643\u0627\u0646 \u0645\u0633\u0624\u0648\u0644\u0627\u064b\u2026","zh":"\u67e5\u627e\u5f53\u65f6\u7684\u6267\u6559\u8005\u2026"},
+"cs7": {"en":"Counting every heartbeat since\u2026","he":"\u05e1\u05d5\u05e4\u05e8\u05d9\u05dd \u05db\u05dc \u05e4\u05e2\u05d9\u05de\u05d4 \u05de\u05d0\u05d6\u2026","es":"Contando cada latido desde entonces\u2026","fr":"D\u00e9compte de chaque battement de c\u0153ur depuis\u2026","de":"Jeder Herzschlag seitdem wird gez\u00e4hlt\u2026","it":"Conteggio di ogni battito da allora\u2026","pt":"Contando cada batimento desde ent\u00e3o\u2026","ru":"\u0421\u0447\u0438\u0442\u0430\u0435\u043c \u043a\u0430\u0436\u0434\u044b\u0439 \u0443\u0434\u0430\u0440 \u0441\u0435\u0440\u0434\u0446\u0430 \u0441 \u0442\u0435\u0445 \u043f\u043e\u0440\u2026","ar":"\u0639\u062f \u0643\u0644 \u0646\u0628\u0636\u0629 \u0642\u0644\u0628 \u0645\u0646\u0630 \u0630\u0644\u0643 \u0627\u0644\u062d\u064a\u0646\u2026","zh":"\u8ba1\u6570\u81ea\u6b64\u4ee5\u6765\u7684\u6bcf\u4e00\u6b21\u5fc3\u8df3\u2026"},
+"cs8": {"en":"Waking the stars\u2026","he":"\u05de\u05e2\u05d5\u05e8\u05e8\u05d9\u05dd \u05d0\u05ea \u05d4\u05db\u05d5\u05db\u05d1\u05d9\u05dd\u2026","es":"Despertando las estrellas\u2026","fr":"R\u00e9veil des \u00e9toiles\u2026","de":"Die Sterne werden geweckt\u2026","it":"Risveglio delle stelle\u2026","pt":"Despertando as estrelas\u2026","ru":"\u041f\u0440\u043e\u0431\u0443\u0436\u0434\u0430\u0435\u043c \u0437\u0432\u0451\u0437\u0434\u044b\u2026","ar":"\u0625\u064a\u0642\u0627\u0638 \u0627\u0644\u0646\u062c\u0648\u0645\u2026","zh":"\u5524\u9192\u661f\u8fb0\u2026"},
+"cs9": {"en":"Almost there\u2026","he":"\u05db\u05de\u05e2\u05d8 \u05e1\u05d9\u05d9\u05dd\u2026","es":"Casi listo\u2026","fr":"Presque termin\u00e9\u2026","de":"Fast fertig\u2026","it":"Quasi pronto\u2026","pt":"Quase l\u00e1\u2026","ru":"\u041f\u043e\u0447\u0442\u0438 \u0433\u043e\u0442\u043e\u0432\u043e\u2026","ar":"\u0627\u0642\u062a\u0631\u0628\u0646\u0627 \u0645\u0646 \u0627\u0644\u0627\u0646\u062a\u0647\u0627\u0621\u2026","zh":"\u5373\u5c06\u5b8c\u6210\u2026"},
+"csSkip": {"en":"Skip","he":"\u05d3\u05dc\u05d2","es":"Omitir","fr":"Passer","de":"\u00dcberspringen","it":"Salta","pt":"Pular","ru":"\u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c","ar":"\u062a\u062e\u0637\u064a","zh":"\u8df3\u8fc7"},
+
+ "marsAge": {"en":"Age on Mars","he":"גיל במאדים","es":"Edad en Marte","fr":"Âge sur Mars","de":"Alter auf dem Mars","it":"Età su Marte","pt":"Idade em Marte","ru":"Возраст на Марсе","ar":"العمر على المريخ","zh":"火星年龄"},
+ "marsSub": {"en":"A year on Mars is 687 Earth days","he":"שנה במאדים אורכת 687 ימי כדור ארץ","es":"Un año en Marte dura 687 días terrestres","fr":"Une année sur Mars dure 687 jours terrestres","de":"Ein Jahr auf dem Mars dauert 687 Erdtage","it":"Un anno su Marte dura 687 giorni terrestri","pt":"Um ano em Marte tem 687 dias terrestres","ru":"Год на Марсе длится 687 земных суток","ar":"تستغرق السنة على المريخ 687 يومًا أرضيًا","zh":"火星上的一年相当于687个地球日"},
+ "mercuryAge": {"en":"Age on Mercury","he":"גיל בכוכב חמה","es":"Edad en Mercurio","fr":"Âge sur Mercure","de":"Alter auf dem Merkur","it":"Età su Mercurio","pt":"Idade em Mercúrio","ru":"Возраст на Меркурии","ar":"العمر على عطارد","zh":"水星年龄"},
+ "dogYears": {"en":"In dog years","he":"בשנות כלב","es":"En años de perro","fr":"En années de chien","de":"In Hundejahren","it":"In anni canini","pt":"Em anos de cachorro","ru":"В собачьих годах","ar":"بالسنوات الكلبية","zh":"以狗的年龄计算"},
+ "fullMoons": {"en":"Full moons witnessed","he":"ירחים מלאים שראית","es":"Lunas llenas vividas","fr":"Pleines lunes vécues","de":"Erlebte Vollmonde","it":"Lune piene vissute","pt":"Luas cheias vividas","ru":"Увиденных полнолуний","ar":"عدد البدور التي شهدتها","zh":"经历过的满月次数"},
+ "leapYears": {"en":"Leap years lived through","he":"שנים מעוברות שחווית","es":"Años bisiestos vividos","fr":"Années bissextiles vécues","de":"Erlebte Schaltjahre","it":"Anni bisestili vissuti","pt":"Anos bissextos vividos","ru":"Пережитых високосных лет","ar":"عدد السنوات الكبيسة التي عشتها","zh":"经历过的闰年数"},
+ "worldPop": {"en":"World population","he":"אוכלוסיית העולם","es":"Población mundial","fr":"Population mondiale","de":"Weltbevölkerung","it":"Popolazione mondiale","pt":"População mundial","ru":"Население мира","ar":"عدد سكان العالم","zh":"世界人口"},
+ "then": {"en":"Then","he":"אז","es":"Entonces","fr":"Alors","de":"Damals","it":"Allora","pt":"Então","ru":"Тогда","ar":"آنذاك","zh":"当时"},
+ "now": {"en":"Now","he":"עכשיו","es":"Ahora","fr":"Maintenant","de":"Jetzt","it":"Ora","pt":"Agora","ru":"Сейчас","ar":"الآن","zh":"现在"},
+
+ "intro1": {"en":"Somewhere, at the exact second you arrived, the world kept doing what it always does — completely unaware that you were about to change everything for the people who love you.","he":"מבט מעמיק על השיר, השמיים, המחירים, מי שהיה בשלטון והמקום שלך ביקום — הכול מתאריך אחד.","es":"Una mirada más profunda a la canción, el cielo, los precios, quién gobernaba y tu lugar en el universo, todo a partir de una fecha.","fr":"Un regard approfondi sur la chanson, le ciel, les prix, qui dirigeait et votre place dans l\'univers — le tout à partir d\'une seule date.","de":"Ein genauerer Blick auf den Song, den Himmel, die Preise, wer regierte, und deinen Platz im Universum — alles anhand eines einzigen Datums.","it":"Uno sguardo più approfondito sulla canzone, il cielo, i prezzi, chi governava e il tuo posto nell\'universo, tutto a partire da una sola data.","pt":"Um olhar mais profundo sobre a música, o céu, os preços, quem governava e seu lugar no universo — tudo a partir de uma única data.","ru":"Более подробный взгляд на песню, небо, цены, тех, кто был у власти, и твоё место во вселенной — и всё это по одной дате.","ar":"نظرة أعمق على الأغنية والسماء والأسعار ومن كان يحكم ومكانك في الكون — كل ذلك من تاريخ واحد.","zh":"深入了解那首歌、那片天空、那些物价、当时的掌权者，以及你在宇宙中的位置——这一切都源于一个日期。"},
+ "intro2": {"en":"A song was playing on the radio that would define that week. The moon hung at a particular phase, whether anyone looked up or not. Someone sat behind a desk in a particular office, making decisions that had nothing to do with you — yet. Gas, bread, and a house cost a fraction of what they do now. And Earth, carrying you along for the ride, had already begun its next lap around the sun.","he":"שיר התנגן ברדיו, שיר שהגדיר את השבוע ההוא. הירח עמד בשלב מסוים, בין אם מישהו הביט בו ובין אם לא. מישהו ישב מאחורי שולחן במשרד מסוים, וקיבל החלטות שלא היה להן שום קשר אליך — עדיין. דלק, לחם ובית עלו שבריר ממה שהם עולים היום. וכדור הארץ, שנשא אותך איתו, כבר התחיל את ההקפה הבאה שלו סביב השמש.","es":"Una canción sonaba en la radio, una que definiría esa semana. La luna estaba en una fase concreta, la mirara alguien o no. Alguien se sentaba tras un escritorio en una oficina particular, tomando decisiones que todavía no tenían nada que ver contigo. La gasolina, el pan y una casa costaban una fracción de lo que cuestan hoy. Y la Tierra, llevándote consigo, ya había comenzado su siguiente vuelta alrededor del sol.","fr":"Une chanson passait à la radio, celle qui allait marquer cette semaine-là. La lune se trouvait dans une phase précise, que quelqu\'un la regarde ou non. Quelqu\'un était assis derrière un bureau, dans un certain bureau, en train de prendre des décisions qui n\'avaient encore rien à voir avec vous. L\'essence, le pain et une maison coûtaient une fraction de ce qu\'ils coûtent aujourd\'hui. Et la Terre, qui vous emportait avec elle, avait déjà entamé son tour suivant autour du soleil.","de":"Im Radio lief ein Song, der diese Woche prägen sollte. Der Mond stand in einer bestimmten Phase, ob jemand hinaufsah oder nicht. Irgendjemand saß an einem bestimmten Schreibtisch und traf Entscheidungen, die noch nichts mit dir zu tun hatten. Benzin, Brot und ein Haus kosteten nur einen Bruchteil von heute. Und die Erde, die dich mitnahm, hatte bereits ihre nächste Runde um die Sonne begonnen.","it":"Una canzone suonava alla radio, una che avrebbe definito quella settimana. La luna si trovava in una fase precisa, che qualcuno la guardasse oppure no. Qualcuno sedeva dietro una scrivania, in un certo ufficio, prendendo decisioni che ancora non avevano nulla a che fare con te. Benzina, pane e una casa costavano una frazione di quanto costano oggi. E la Terra, portandoti con sé, aveva già iniziato il suo giro successivo intorno al sole.","pt":"Uma música tocava no rádio, uma que definiria aquela semana. A lua estava numa fase específica, quer alguém olhasse para ela ou não. Alguém estava sentado atrás de uma mesa, num determinado gabinete, tomando decisões que ainda não tinham nada a ver com você. Gasolina, pão e uma casa custavam uma fração do que custam hoje. E a Terra, levando você consigo, já tinha começado sua próxima volta ao redor do sol.","ru":"По радио играла песня, которая станет главной мелодией той недели. Луна находилась в определённой фазе — смотрел на неё кто-то или нет. Кто-то сидел за определённым столом в определённом кабинете, принимая решения, пока не имевшие к тебе никакого отношения. Бензин, хлеб и дом стоили лишь малую долю от нынешних цен. А Земля, неся тебя с собой, уже начинала следующий круг вокруг Солнца.","ar":"كانت أغنية تُذاع على الراديو، أغنية ستُحدد ملامح ذلك الأسبوع. كان القمر في طور معين، سواء نظر إليه أحد أم لا. كان شخص ما يجلس خلف مكتب معين، يتخذ قرارات لم تكن تخصك بعد. كان الوقود والخبز والمنزل يكلف جزءًا بسيطًا مما يكلفه اليوم. وكانت الأرض، التي تحملك معها، قد بدأت بالفعل جولتها التالية حول الشمس.","zh":"收音机里播放着一首将定义那一周的歌曲。月亮正处于某个特定的相位，无论有没有人抬头看它。某个人正坐在某间办公室的某张办公桌后面，做出当时还与你毫无关系的决定。汽油、面包和房子的价格只是如今的一小部分。而承载着你的地球，已经开始了绕太阳的下一圈旅程。"},
+ "intro3": {"en":"Pick a date below, and we'll rebuild that exact moment — piece by piece.","he":"בחרו תאריך למטה, ואנחנו נבנה מחדש את הרגע המדויק הזה — חלק אחר חלק.","es":"Elige una fecha abajo, y reconstruiremos ese momento exacto, pieza por pieza.","fr":"Choisissez une date ci-dessous, et nous reconstruirons ce moment exact — pièce par pièce.","de":"Wähle unten ein Datum, und wir rekonstruieren diesen genauen Moment — Stück für Stück.","it":"Scegli una data qui sotto, e ricostruiremo quel momento esatto, pezzo dopo pezzo.","pt":"Escolha uma data abaixo, e reconstruiremos esse momento exato, peça por peça.","ru":"Выберите дату ниже, и мы воссоздадим этот самый момент — шаг за шагом.","ar":"اختر تاريخًا أدناه، وسنعيد بناء تلك اللحظة بالضبط، جزءًا تلو الآخر.","zh":"在下方选择一个日期，我们将一点一点重建那个确切的时刻。"},
+
+ "secIdentity": {"en":"Who you were, written in the stars","he":"מי שהיית, כתוב בכוכבים","es":"Quién eras, escrito en las estrellas","fr":"Qui vous étiez, écrit dans les étoiles","de":"Wer du warst, in den Sternen geschrieben","it":"Chi eri, scritto nelle stelle","pt":"Quem você era, escrito nas estrelas","ru":"Кем ты был, написано на звёздах","ar":"من كنت، مكتوب في النجوم","zh":"写在星空中的你"},
+ "secIdentitySub": {"en":"The song everyone was humming, the sky overhead, and who was running the country.","he":"השיר שכולם זמזמו, השמיים מעל, ומי שניהל את המדינה.","es":"La canción que todos tarareaban, el cielo en lo alto y quién gobernaba el país.","fr":"La chanson que tout le monde fredonnait, le ciel au-dessus et qui dirigeait le pays.","de":"Der Song, den alle summten, der Himmel darüber, und wer das Land führte.","it":"La canzone che tutti canticchiavano, il cielo sopra di te e chi governava il paese.","pt":"A música que todos cantarolavam, o céu lá em cima e quem governava o país.","ru":"Песня, которую все напевали, небо над головой и то, кто управлял страной.","ar":"الأغنية التي كان الجميع يدندنها، والسماء فوقك، ومن كان يحكم البلاد.","zh":"当时人人哼唱的歌曲、头顶的夜空，以及当时的国家领导人。"},
+ "secBody": {"en":"Your body, ticking away","he":"הגוף שלך, מתקתק","es":"Tu cuerpo, latiendo sin parar","fr":"Votre corps, qui bat sans relâche","de":"Dein Körper, der unaufhörlich tickt","it":"Il tuo corpo, che batte senza sosta","pt":"Seu corpo, batendo sem parar","ru":"Твоё тело продолжает работать","ar":"جسدك، يعمل بلا توقف","zh":"持续跳动的你的身体"},
+ "secBodySub": {"en":"A live count of every heartbeat and breath since the moment you arrived.","he":"ספירה חיה של כל פעימת לב ונשימה מהרגע שהגעת.","es":"Un recuento en vivo de cada latido y respiración desde que llegaste.","fr":"Un décompte en direct de chaque battement de cœur et de chaque respiration depuis votre arrivée.","de":"Eine Live-Zählung jedes Herzschlags und Atemzugs seit deiner Ankunft.","it":"Un conteggio in tempo reale di ogni battito e respiro da quando sei arrivato.","pt":"Uma contagem ao vivo de cada batimento e respiração desde que você chegou.","ru":"Счётчик каждого удара сердца и вдоха с момента твоего рождения в реальном времени.","ar":"عداد مباشر لكل نبضة قلب ونفس منذ لحظة وصولك.","zh":"从你出生那一刻起，实时统计的每一次心跳与呼吸。"},
+ "secWorld": {"en":"Your little corner of the calendar","he":"הפינה הקטנה שלך בלוח השנה","es":"Tu pequeño rincón del calendario","fr":"Votre petit coin du calendrier","de":"Dein kleiner Platz im Kalender","it":"Il tuo piccolo angolo nel calendario","pt":"Seu pequeno canto no calendário","ru":"Твой маленький уголок в календаре","ar":"زاويتك الصغيرة في التقويم","zh":"属于你的日历角落"},
+ "secWorldSub": {"en":"The gemstone, flower, season, and generation tied to the month you were born.","he":"האבן, הפרח, העונה והדור הקשורים לחודש בו נולדת.","es":"La piedra, la flor, la estación y la generación ligadas al mes en que naciste.","fr":"La pierre, la fleur, la saison et la génération liées à votre mois de naissance.","de":"Der Edelstein, die Blume, die Jahreszeit und die Generation deines Geburtsmonats.","it":"La pietra, il fiore, la stagione e la generazione legati al tuo mese di nascita.","pt":"A pedra, a flor, a estação e a geração ligadas ao seu mês de nascimento.","ru":"Камень, цветок, сезон и поколение, связанные с месяцем твоего рождения.","ar":"الحجر والزهرة والفصل والجيل المرتبطون بشهر ميلادك.","zh":"与你出生月份相关的宝石、花朵、季节和世代。"},
+ "secPrices": {"en":"What a dollar used to buy","he":"מה אפשר היה לקנות בדולר","es":"Lo que solía comprar un dólar","fr":"Ce qu\'un dollar pouvait acheter","de":"Was ein Dollar damals kaufte","it":"Cosa comprava un dollaro","pt":"O que um dólar comprava","ru":"Что раньше можно было купить на доллар","ar":"ما كان يشتريه الدولار","zh":"一美元曾经能买到什么"},
+ "secPricesSub": {"en":"Rough U.S. averages for that year, lined up against today\'s — and how crowded the planet was.","he":"ממוצעים אמריקאים גסים לאותה שנה, לצד היום — וכמה אנשים היו על הכוכב.","es":"Promedios aproximados de EE. UU. de ese año, junto a los de hoy, y cuán poblado estaba el planeta.","fr":"Moyennes américaines approximatives de cette année-là, comparées à aujourd\'hui, et la population du monde à l\'époque.","de":"Grobe US-Durchschnittswerte jenes Jahres neben den heutigen — und wie bevölkert der Planet war.","it":"Medie americane approssimative di quell\'anno, a confronto con oggi, e quanto era affollato il pianeta.","pt":"Médias aproximadas dos EUA daquele ano, lado a lado com as de hoje, e a população do planeta.","ru":"Приблизительные средние показатели США за тот год в сравнении с сегодняшними — и сколько людей жило на планете.","ar":"متوسطات أمريكية تقريبية لتلك السنة، مقارنة باليوم — وعدد سكان الكوكب حينها.","zh":"那一年的美国大致平均值与今天的对比，以及当时地球上的人口数量。"},
+ "secCosmos": {"en":"Zoom all the way out","he":"להתרחק עד הסוף","es":"Alejando la vista del todo","fr":"Prenez du recul, complètement","de":"Ganz weit herauszoomen","it":"Allontaniamo del tutto lo sguardo","pt":"Afastando a visão por completo","ru":"Взгляд издалека","ar":"تكبير المشهد بالكامل","zh":"把视角拉得更远"},
+ "secCosmosSub": {"en":"How old you\'d be on other planets, how many full moons you\'ve watched, and how far you\'ve really traveled.","he":"בן כמה היית בכוכבים אחרים, כמה ירחים מלאים ראית, וכמה באמת נסעת.","es":"Qué edad tendrías en otros planetas, cuántas lunas llenas has visto y cuán lejos has viajado realmente.","fr":"Quel âge vous auriez sur d\'autres planètes, combien de pleines lunes vous avez vues, et la distance que vous avez vraiment parcourue.","de":"Wie alt du auf anderen Planeten wärst, wie viele Vollmonde du gesehen hast und wie weit du wirklich gereist bist.","it":"Quanti anni avresti su altri pianeti, quante lune piene hai visto e quanto hai davvero viaggiato.","pt":"Que idade você teria em outros planetas, quantas luas cheias você viu e o quão longe você realmente viajou.","ru":"Сколько бы тебе было лет на других планетах, сколько полнолуний ты видел и как далеко ты на самом деле путешествовал.","ar":"كم سيكون عمرك على كواكب أخرى، وكم بدرًا شهدت، وإلى أي مدى سافرت بالفعل.","zh":"你在其他星球上的年龄、你见过多少次满月，以及你究竟走过了多远的距离。"},
+"secHistory": {"en":"That Day in History","he":"ההיסטוריה של אותו יום","es":"Ese día en la historia","fr":"Ce jour-là dans l'histoire","de":"Dieser Tag in der Geschichte","it":"Quel giorno nella storia","pt":"Esse dia na história","ru":"Этот день в истории","ar":"ذلك اليوم في التاريخ","zh":"那一天的历史"},
+"secHistorySub": {"en":"Who else showed up, and what made the headlines","he":"מי עוד הגיע באותו יום, ומה עלה לכותרות","es":"Quién más llegó ese día, y qué ocupó los titulares","fr":"Qui d'autre est arrivé ce jour-là, et ce qui a fait la une","de":"Wer sonst noch an diesem Tag ankam, und was Schlagzeilen machte","it":"Chi altro è arrivato quel giorno, e cosa ha fatto notizia","pt":"Quem mais chegou naquele dia, e o que virou manchete","ru":"Кто ещё родился в этот день и что попало в заголовки","ar":"من ظهر أيضًا في ذلك اليوم، وما صنع العناوين الرئيسية","zh":"那天还有谁出生，又发生了哪些大新闻"},
+"famousPeople": {"en":"Born the same day","he":"נולדו באותו יום","es":"Nacidos el mismo día","fr":"Nés le même jour","de":"Am selben Tag geboren","it":"Nati lo stesso giorno","pt":"Nascidos no mesmo dia","ru":"Родились в этот же день","ar":"وُلدوا في نفس اليوم","zh":"同一天出生的名人"},
+"newsEvents": {"en":"Making news that day","he":"בכותרות באותו יום","es":"Noticias de ese día","fr":"Les actualités de ce jour-là","de":"Schlagzeilen an diesem Tag","it":"Le notizie di quel giorno","pt":"Notícias daquele dia","ru":"Новости того дня","ar":"أخبار ذلك اليوم","zh":"当天的新闻"},
+"noData": {"en":"Nothing on record for this date yet.","he":"אין עדיין נתונים לתאריך הזה.","es":"Aún no hay datos registrados para esta fecha.","fr":"Aucune donnée enregistrée pour cette date pour le moment.","de":"Für dieses Datum liegen noch keine Daten vor.","it":"Ancora nessun dato registrato per questa data.","pt":"Ainda não há registros para esta data.","ru":"Пока нет данных для этой даты.","ar":"لا توجد بيانات مسجلة لهذا التاريخ بعد.","zh":"目前没有该日期的记录。"},
+"historyOffline": {"en":"Couldn't reach the history archive right now — try again with a connection.","he":"לא הצלחנו להתחבר לארכיון ההיסטוריה כרגע — נסו שוב עם חיבור לאינטרנט.","es":"No se pudo conectar al archivo histórico ahora — inténtalo de nuevo con conexión.","fr":"Impossible d'accéder aux archives historiques pour l'instant — réessayez avec une connexion.","de":"Das Geschichtsarchiv konnte gerade nicht erreicht werden — versuche es erneut mit einer Verbindung.","it":"Impossibile raggiungere l'archivio storico ora — riprova con una connessione.","pt":"Não foi possível acessar o arquivo histórico agora — tente novamente com conexão.","ru":"Не удалось подключиться к историческому архиву — попробуйте снова при наличии подключения.","ar":"تعذّر الوصول إلى الأرشيف التاريخي الآن — حاول مرة أخرى مع اتصال بالإنترنت.","zh":"目前无法连接历史档案——请在联网后重试。"},
+"historyNote": {"en":"No record for your exact year — showing other years on this date instead.","he":"אין רישום לשנה המדויקת שלך — מוצגות שנים אחרות באותו תאריך.","es":"No hay registro para tu año exacto — mostrando otros años en esta fecha.","fr":"Aucun enregistrement pour votre année exacte — affichage d'autres années à cette date.","de":"Kein Eintrag für dein genaues Jahr — stattdessen werden andere Jahre an diesem Datum gezeigt.","it":"Nessun dato per il tuo anno esatto — vengono mostrati altri anni in questa data.","pt":"Nenhum registro para o seu ano exato — mostrando outros anos nessa data.","ru":"Нет записи именно за ваш год — показаны другие годы в эту дату.","ar":"لا يوجد سجل لسنتك بالتحديد — يتم عرض سنوات أخرى في هذا التاريخ بدلاً من ذلك.","zh":"没有您确切年份的记录——改为显示该日期其他年份的事件。"}
+
+}, "ZODIAC_T": {"capricorn": {"en": "Capricorn", "he": "גדי", "es": "Capricornio", "fr": "Capricorne", "de": "Steinbock", "it": "Capricorno", "pt": "Capricórnio", "ru": "Козерог", "ar": "الجدي", "zh": "摩羯座"}, "aquarius": {"en": "Aquarius", "he": "דלי", "es": "Acuario", "fr": "Verseau", "de": "Wassermann", "it": "Acquario", "pt": "Aquário", "ru": "Водолей", "ar": "الدلو", "zh": "水瓶座"}, "pisces": {"en": "Pisces", "he": "דגים", "es": "Piscis", "fr": "Poissons", "de": "Fische", "it": "Pesci", "pt": "Peixes", "ru": "Рыбы", "ar": "الحوت", "zh": "双鱼座"}, "aries": {"en": "Aries", "he": "טלה", "es": "Aries", "fr": "Bélier", "de": "Widder", "it": "Ariete", "pt": "Áries", "ru": "Овен", "ar": "الحمل", "zh": "白羊座"}, "taurus": {"en": "Taurus", "he": "שור", "es": "Tauro", "fr": "Taureau", "de": "Stier", "it": "Toro", "pt": "Touro", "ru": "Телец", "ar": "الثور", "zh": "金牛座"}, "gemini": {"en": "Gemini", "he": "תאומים", "es": "Géminis", "fr": "Gémeaux", "de": "Zwillinge", "it": "Gemelli", "pt": "Gêmeos", "ru": "Близнецы", "ar": "الجوزاء", "zh": "双子座"}, "cancer": {"en": "Cancer", "he": "סרטן", "es": "Cáncer", "fr": "Cancer", "de": "Krebs", "it": "Cancro", "pt": "Câncer", "ru": "Рак", "ar": "السرطان", "zh": "巨蟹座"}, "leo": {"en": "Leo", "he": "אריה", "es": "Leo", "fr": "Lion", "de": "Löwe", "it": "Leone", "pt": "Leão", "ru": "Лев", "ar": "الأسد", "zh": "狮子座"}, "virgo": {"en": "Virgo", "he": "בתולה", "es": "Virgo", "fr": "Vierge", "de": "Jungfrau", "it": "Vergine", "pt": "Virgem", "ru": "Дева", "ar": "العذراء", "zh": "处女座"}, "libra": {"en": "Libra", "he": "מאזניים", "es": "Libra", "fr": "Balance", "de": "Waage", "it": "Bilancia", "pt": "Libra", "ru": "Весы", "ar": "الميزان", "zh": "天秤座"}, "scorpio": {"en": "Scorpio", "he": "עקרב", "es": "Escorpio", "fr": "Scorpion", "de": "Skorpion", "it": "Scorpione", "pt": "Escorpião", "ru": "Скорпион", "ar": "العقرب", "zh": "天蝎座"}, "sagittarius": {"en": "Sagittarius", "he": "קשת", "es": "Sagitario", "fr": "Sagittaire", "de": "Schütze", "it": "Sagittario", "pt": "Sagitário", "ru": "Стрелец", "ar": "القوس", "zh": "射手座"}}, "ZODIAC_SYM": {"capricorn": "♑", "aquarius": "♒", "pisces": "♓", "aries": "♈", "taurus": "♉", "gemini": "♊", "cancer": "♋", "leo": "♌", "virgo": "♍", "libra": "♎", "scorpio": "♏", "sagittarius": "♐"}, "CHINESE_T": {"rat": {"en": "Rat", "he": "חולדה", "es": "Rata", "fr": "Rat", "de": "Ratte", "it": "Topo", "pt": "Rato", "ru": "Крыса", "ar": "الفأر", "zh": "鼠"}, "ox": {"en": "Ox", "he": "שור", "es": "Buey", "fr": "Buffle", "de": "Büffel", "it": "Bue", "pt": "Boi", "ru": "Бык", "ar": "الثور", "zh": "牛"}, "tiger": {"en": "Tiger", "he": "נמר", "es": "Tigre", "fr": "Tigre", "de": "Tiger", "it": "Tigre", "pt": "Tigre", "ru": "Тигр", "ar": "النمر", "zh": "虎"}, "rabbit": {"en": "Rabbit", "he": "ארנב", "es": "Conejo", "fr": "Lapin", "de": "Hase", "it": "Coniglio", "pt": "Coelho", "ru": "Кролик", "ar": "الأرنب", "zh": "兔"}, "dragon": {"en": "Dragon", "he": "דרקון", "es": "Dragón", "fr": "Dragon", "de": "Drache", "it": "Drago", "pt": "Dragão", "ru": "Дракон", "ar": "التنين", "zh": "龙"}, "snake": {"en": "Snake", "he": "נחש", "es": "Serpiente", "fr": "Serpent", "de": "Schlange", "it": "Serpente", "pt": "Serpente", "ru": "Змея", "ar": "الأفعى", "zh": "蛇"}, "horse": {"en": "Horse", "he": "סוס", "es": "Caballo", "fr": "Cheval", "de": "Pferd", "it": "Cavallo", "pt": "Cavalo", "ru": "Лошадь", "ar": "الحصان", "zh": "马"}, "goat": {"en": "Goat", "he": "עז", "es": "Cabra", "fr": "Chèvre", "de": "Ziege", "it": "Capra", "pt": "Cabra", "ru": "Коза", "ar": "الماعز", "zh": "羊"}, "monkey": {"en": "Monkey", "he": "קוף", "es": "Mono", "fr": "Singe", "de": "Affe", "it": "Scimmia", "pt": "Macaco", "ru": "Обезьяна", "ar": "القرد", "zh": "猴"}, "rooster": {"en": "Rooster", "he": "תרנגול", "es": "Gallo", "fr": "Coq", "de": "Hahn", "it": "Gallo", "pt": "Galo", "ru": "Петух", "ar": "الديك", "zh": "鸡"}, "dog": {"en": "Dog", "he": "כלב", "es": "Perro", "fr": "Chien", "de": "Hund", "it": "Cane", "pt": "Cão", "ru": "Собака", "ar": "الكلب", "zh": "狗"}, "pig": {"en": "Pig", "he": "חזיר", "es": "Cerdo", "fr": "Cochon", "de": "Schwein", "it": "Maiale", "pt": "Porco", "ru": "Свинья", "ar": "الخنزير", "zh": "猪"}}, "ELEMENT_T": {"metal": {"en": "Metal", "he": "מתכת", "es": "Metal", "fr": "Métal", "de": "Metall", "it": "Metallo", "pt": "Metal", "ru": "Металл", "ar": "المعدن", "zh": "金"}, "water": {"en": "Water", "he": "מים", "es": "Agua", "fr": "Eau", "de": "Wasser", "it": "Acqua", "pt": "Água", "ru": "Вода", "ar": "الماء", "zh": "水"}, "wood": {"en": "Wood", "he": "עץ", "es": "Madera", "fr": "Bois", "de": "Holz", "it": "Legno", "pt": "Madeira", "ru": "Дерево", "ar": "الخشب", "zh": "木"}, "fire": {"en": "Fire", "he": "אש", "es": "Fuego", "fr": "Feu", "de": "Feuer", "it": "Fuoco", "pt": "Fogo", "ru": "Огонь", "ar": "النار", "zh": "火"}, "earth": {"en": "Earth", "he": "אדמה", "es": "Tierra", "fr": "Terre", "de": "Erde", "it": "Terra", "pt": "Terra", "ru": "Земля", "ar": "التراب", "zh": "土"}}, "MOON_T": {"new": {"en": "New Moon", "he": "ירח חדש", "es": "Luna nueva", "fr": "Nouvelle lune", "de": "Neumond", "it": "Luna nuova", "pt": "Lua nova", "ru": "Новолуние", "ar": "المحاق", "zh": "新月"}, "waxcres": {"en": "Waxing Crescent", "he": "סהר גדל", "es": "Creciente", "fr": "Croissant montant", "de": "Zunehmende Sichel", "it": "Crescente", "pt": "Crescente", "ru": "Растущий серп", "ar": "هلال متزايد", "zh": "娥眉月"}, "first": {"en": "First Quarter", "he": "רבע ראשון", "es": "Cuarto creciente", "fr": "Premier quartier", "de": "Erstes Viertel", "it": "Primo quarto", "pt": "Quarto crescente", "ru": "Первая четверть", "ar": "التربيع الأول", "zh": "上弦月"}, "waxgib": {"en": "Waxing Gibbous", "he": "ירח גדל", "es": "Gibosa creciente", "fr": "Gibbeuse croissante", "de": "Zunehmender Mond", "it": "Gibbosa crescente", "pt": "Gibosa crescente", "ru": "Растущая луна", "ar": "أحدب متزايد", "zh": "盈凸月"}, "full": {"en": "Full Moon", "he": "ירח מלא", "es": "Luna llena", "fr": "Pleine lune", "de": "Vollmond", "it": "Luna piena", "pt": "Lua cheia", "ru": "Полнолуние", "ar": "البدر", "zh": "满月"}, "wangib": {"en": "Waning Gibbous", "he": "ירח דועך", "es": "Gibosa menguante", "fr": "Gibbeuse décroissante", "de": "Abnehmender Mond", "it": "Gibbosa calante", "pt": "Gibosa minguante", "ru": "Убывающая луна", "ar": "أحدب متناقص", "zh": "亏凸月"}, "last": {"en": "Last Quarter", "he": "רבע אחרון", "es": "Cuarto menguante", "fr": "Dernier quartier", "de": "Letztes Viertel", "it": "Ultimo quarto", "pt": "Quarto minguante", "ru": "Последняя четверть", "ar": "التربيع الأخير", "zh": "下弦月"}, "wancres": {"en": "Waning Crescent", "he": "סהר דועך", "es": "Menguante", "fr": "Croissant décroissant", "de": "Abnehmende Sichel", "it": "Calante", "pt": "Minguante", "ru": "Убывающий серп", "ar": "هلال متناقص", "zh": "残月"}}, "MOON_EMOJI": {"new": "🌑", "waxcres": "🌒", "first": "🌓", "waxgib": "🌔", "full": "🌕", "wangib": "🌖", "last": "🌗", "wancres": "🌘"}, "GEN_T": {"greatest": {"en": "Greatest Generation", "he": "הדור הגדול", "es": "Generación grandiosa", "fr": "Génération grandiose", "de": "Größte Generation", "it": "Generazione più grande", "pt": "Maior geração", "ru": "Величайшее поколение", "ar": "الجيل الأعظم", "zh": "最伟大的一代"}, "silent": {"en": "Silent Generation", "he": "הדור השקט", "es": "Generación silenciosa", "fr": "Génération silencieuse", "de": "Stille Generation", "it": "Generazione silenziosa", "pt": "Geração silenciosa", "ru": "Молчаливое поколение", "ar": "الجيل الصامت", "zh": "沉默的一代"}, "boomer": {"en": "Baby Boomer", "he": "בייבי בומר", "es": "Baby boomer", "fr": "Baby-boomer", "de": "Babyboomer", "it": "Baby boomer", "pt": "Baby boomer", "ru": "Бумер", "ar": "جيل طفرة المواليد", "zh": "婴儿潮一代"}, "genx": {"en": "Generation X", "he": "דור X", "es": "Generación X", "fr": "Génération X", "de": "Generation X", "it": "Generazione X", "pt": "Geração X", "ru": "Поколение X", "ar": "جيل إكس", "zh": "X世代"}, "millennial": {"en": "Millennial", "he": "דור המילניום", "es": "Millennial", "fr": "Millénial", "de": "Millennial", "it": "Millennial", "pt": "Millennial", "ru": "Миллениал", "ar": "جيل الألفية", "zh": "千禧一代"}, "genz": {"en": "Generation Z", "he": "דור Z", "es": "Generación Z", "fr": "Génération Z", "de": "Generation Z", "it": "Generazione Z", "pt": "Geração Z", "ru": "Поколение Z", "ar": "جيل زد", "zh": "Z世代"}, "genalpha": {"en": "Generation Alpha", "he": "דור אלפא", "es": "Generación Alfa", "fr": "Génération Alpha", "de": "Generation Alpha", "it": "Generazione Alfa", "pt": "Geração Alfa", "ru": "Поколение Альфа", "ar": "جيل ألفا", "zh": "阿尔法世代"}}, "SEASON_T": {"winter": {"en": "Winter", "he": "חורף", "es": "Invierno", "fr": "Hiver", "de": "Winter", "it": "Inverno", "pt": "Inverno", "ru": "Зима", "ar": "الشتاء", "zh": "冬季"}, "spring": {"en": "Spring", "he": "אביב", "es": "Primavera", "fr": "Printemps", "de": "Frühling", "it": "Primavera", "pt": "Primavera", "ru": "Весна", "ar": "الربيع", "zh": "春季"}, "summer": {"en": "Summer", "he": "קיץ", "es": "Verano", "fr": "Été", "de": "Sommer", "it": "Estate", "pt": "Verão", "ru": "Лето", "ar": "الصيف", "zh": "夏季"}, "autumn": {"en": "Autumn", "he": "סתיו", "es": "Otoño", "fr": "Automne", "de": "Herbst", "it": "Autunno", "pt": "Outono", "ru": "Осень", "ar": "الخريف", "zh": "秋季"}}, "SEASON_EMOJI": {"winter": "❄️", "spring": "🌱", "summer": "☀️", "autumn": "🍂"}, "GEM_T": ["garnet", "amethyst", "aquamarine", "diamond", "emerald", "pearl", "ruby", "peridot", "sapphire", "opal", "topaz", "turquoise"], "GEM_WORDS": {"garnet": {"en": "Garnet", "he": "אודם", "es": "Granate", "fr": "Grenat", "de": "Granat", "it": "Granato", "pt": "Granada", "ru": "Гранат", "ar": "الجارنيت", "zh": "石榴石"}, "amethyst": {"en": "Amethyst", "he": "אמטיסט", "es": "Amatista", "fr": "Améthyste", "de": "Amethyst", "it": "Ametista", "pt": "Ametista", "ru": "Аметист", "ar": "الجمشت", "zh": "紫水晶"}, "aquamarine": {"en": "Aquamarine", "he": "אקוומארין", "es": "Aguamarina", "fr": "Aigue-marine", "de": "Aquamarin", "it": "Acquamarina", "pt": "Água-marinha", "ru": "Аквамарин", "ar": "الأكوامارين", "zh": "海蓝宝石"}, "diamond": {"en": "Diamond", "he": "יהלום", "es": "Diamante", "fr": "Diamant", "de": "Diamant", "it": "Diamante", "pt": "Diamante", "ru": "Алмаз", "ar": "الألماس", "zh": "钻石"}, "emerald": {"en": "Emerald", "he": "אזמרגד", "es": "Esmeralda", "fr": "Émeraude", "de": "Smaragd", "it": "Smeraldo", "pt": "Esmeralda", "ru": "Изумруд", "ar": "الزمرد", "zh": "祖母绿"}, "pearl": {"en": "Pearl", "he": "פנינה", "es": "Perla", "fr": "Perle", "de": "Perle", "it": "Perla", "pt": "Pérola", "ru": "Жемчуг", "ar": "اللؤلؤ", "zh": "珍珠"}, "ruby": {"en": "Ruby", "he": "אודם יקר", "es": "Rubí", "fr": "Rubis", "de": "Rubin", "it": "Rubino", "pt": "Rubi", "ru": "Рубин", "ar": "الياقوت الأحمر", "zh": "红宝石"}, "peridot": {"en": "Peridot", "he": "פרידוט", "es": "Peridoto", "fr": "Péridot", "de": "Peridot", "it": "Peridoto", "pt": "Peridoto", "ru": "Перидот", "ar": "الزبرجد", "zh": "橄榄石"}, "sapphire": {"en": "Sapphire", "he": "ספיר", "es": "Zafiro", "fr": "Saphir", "de": "Saphir", "it": "Zaffiro", "pt": "Safira", "ru": "Сапфир", "ar": "الياقوت الأزرق", "zh": "蓝宝石"}, "opal": {"en": "Opal", "he": "אופל", "es": "Ópalo", "fr": "Opale", "de": "Opal", "it": "Opale", "pt": "Opala", "ru": "Опал", "ar": "الأوبال", "zh": "蛋白石"}, "topaz": {"en": "Topaz", "he": "טופז", "es": "Topacio", "fr": "Topaze", "de": "Topas", "it": "Topazio", "pt": "Topázio", "ru": "Топаз", "ar": "التوباز", "zh": "黄玉"}, "turquoise": {"en": "Turquoise", "he": "טורקיז", "es": "Turquesa", "fr": "Turquoise", "de": "Türkis", "it": "Turchese", "pt": "Turquesa", "ru": "Бирюза", "ar": "الفيروز", "zh": "绿松石"}}, "FLOWER_KEYS": ["carnation", "violet", "daffodil", "daisy", "lily", "rose", "larkspur", "gladiolus", "aster", "marigold", "chrysanthemum", "narcissus"], "FLOWER_WORDS": {"carnation": {"en": "Carnation", "he": "ציפורן", "es": "Clavel", "fr": "Œillet", "de": "Nelke", "it": "Garofano", "pt": "Cravo", "ru": "Гвоздика", "ar": "القرنفل", "zh": "康乃馨"}, "violet": {"en": "Violet", "he": "סיגלית", "es": "Violeta", "fr": "Violette", "de": "Veilchen", "it": "Violetta", "pt": "Violeta", "ru": "Фиалка", "ar": "البنفسج", "zh": "紫罗兰"}, "daffodil": {"en": "Daffodil", "he": "נרקיס", "es": "Narciso", "fr": "Jonquille", "de": "Narzisse", "it": "Giunchiglia", "pt": "Narciso", "ru": "Нарцисс", "ar": "النرجس البري", "zh": "水仙"}, "daisy": {"en": "Daisy", "he": "חרצית", "es": "Margarita", "fr": "Marguerite", "de": "Gänseblümchen", "it": "Margherita", "pt": "Margarida", "ru": "Маргаритка", "ar": "الأقحوان", "zh": "雏菊"}, "lily": {"en": "Lily of the Valley", "he": "שושנת העמקים", "es": "Lirio de los valles", "fr": "Muguet", "de": "Maiglöckchen", "it": "Mughetto", "pt": "Lírio-do-vale", "ru": "Ландыш", "ar": "زنبق الوادي", "zh": "铃兰"}, "rose": {"en": "Rose", "he": "ורד", "es": "Rosa", "fr": "Rose", "de": "Rose", "it": "Rosa", "pt": "Rosa", "ru": "Роза", "ar": "الورد", "zh": "玫瑰"}, "larkspur": {"en": "Larkspur", "he": "דורבנית", "es": "Espuela de caballero", "fr": "Pied-d'alouette", "de": "Rittersporn", "it": "Speronella", "pt": "Esporinha", "ru": "Живокость", "ar": "رجل الغراب", "zh": "飞燕草"}, "gladiolus": {"en": "Gladiolus", "he": "סייפן", "es": "Gladiolo", "fr": "Glaïeul", "de": "Gladiole", "it": "Gladiolo", "pt": "Gladíolo", "ru": "Гладиолус", "ar": "السيفية", "zh": "唐菖蒲"}, "aster": {"en": "Aster", "he": "אסתר", "es": "Áster", "fr": "Aster", "de": "Aster", "it": "Aster", "pt": "Áster", "ru": "Астра", "ar": "الآستر", "zh": "紫菀"}, "marigold": {"en": "Marigold", "he": "ציפורנית", "es": "Caléndula", "fr": "Souci", "de": "Ringelblume", "it": "Calendula", "pt": "Calêndula", "ru": "Бархатцы", "ar": "القطيفة", "zh": "万寿菊"}, "chrysanthemum": {"en": "Chrysanthemum", "he": "חרצית גדולה", "es": "Crisantemo", "fr": "Chrysanthème", "de": "Chrysantheme", "it": "Crisantemo", "pt": "Crisântemo", "ru": "Хризантема", "ar": "الأقحوان الكبير", "zh": "菊花"}, "narcissus": {"en": "Narcissus", "he": "נרקיס לבן", "es": "Narciso blanco", "fr": "Narcisse", "de": "Narzisse (weiß)", "it": "Narciso", "pt": "Narciso", "ru": "Нарцисс (белый)", "ar": "النرجس", "zh": "水仙花"}}};
+const {LANGS,LANG_NAMES,RTL,UI,ZODIAC_T,ZODIAC_SYM,CHINESE_T,ELEMENT_T,MOON_T,MOON_EMOJI,GEN_T,SEASON_T,SEASON_EMOJI,GEM_T,GEM_WORDS,FLOWER_KEYS,FLOWER_WORDS} = I18N_DATA;
+
+const $=id=>document.getElementById(id);
+const todayISO=new Date().toISOString().slice(0,10);
+$('bdate').max=todayISO;
+$('bdate').value='1990-06-15';
+
+/* ---------- i18n ---------- */
+let LANG=(navigator.language||'en').slice(0,2);
+if(!LANGS.includes(LANG))LANG='en';
+function t(k){return (UI[k]&&UI[k][LANG])||UI[k].en}
+function buildMenu(){
+ const m=$('langMenu');m.innerHTML='';
+ LANGS.forEach(code=>{
+  const b=document.createElement('button');b.textContent=LANG_NAMES[code];b.className=code===LANG?'on':'';
+  b.onclick=()=>{LANG=code;m.classList.remove('open');applyStatic();if($('results').style.display==='block')render()};
+  m.appendChild(b);
+ });
+}
+$('langBtn').onclick=e=>{e.stopPropagation();buildMenu();$('langMenu').classList.toggle('open')};
+document.addEventListener('click',()=>$('langMenu').classList.remove('open'));
+function applyStatic(){
+ document.documentElement.dir=RTL.includes(LANG)?'rtl':'ltr';
+ $('t_title').textContent=t('title');$('t_tag').textContent=t('tag');$('t_intro1').textContent=t('intro1');$('t_intro2').textContent=t('intro2');$('t_intro3').textContent=t('intro3');$('t_dateLabel').textContent=t('dateLabel');
+ $('t_timeLabel').textContent=t('timeLabel');$('go').textContent=t('go');
+ $('t_footer').textContent=t('footer');
+ $('t_secIdentity').textContent=t('secIdentity');$('t_secIdentitySub').textContent=t('secIdentitySub');
+ $('t_secBody').textContent=t('secBody');$('t_secBodySub').textContent=t('secBodySub');
+ $('t_secWorld').textContent=t('secWorld');$('t_secWorldSub').textContent=t('secWorldSub');
+ $('t_secPrices').textContent=t('secPrices');$('t_secPricesSub').textContent=t('secPricesSub');
+ $('t_secCosmos').textContent=t('secCosmos');$('t_secCosmosSub').textContent=t('secCosmosSub');
+ $('t_secHistory').textContent=t('secHistory');$('t_secHistorySub').textContent=t('secHistorySub');
+ buildMenu();
+}
+applyStatic();
+
+/* ---------- data ---------- */
+const ZODIAC=[[120,'capricorn'],[219,'aquarius'],[320,'pisces'],[420,'aries'],[521,'taurus'],[621,'gemini'],[722,'cancer'],[823,'leo'],[923,'virgo'],[1023,'libra'],[1122,'scorpio'],[1222,'sagittarius'],[1231,'capricorn']];
+function westernZodiac(m,d){const key=m*100+d;let zk='capricorn';for(const[cut,name]of ZODIAC){zk=name;if(key<=cut)break}return ZODIAC_T[zk][LANG]+' '+ZODIAC_SYM[zk]}
+const CHINESE_ORDER=['monkey','rooster','dog','pig','rat','ox','tiger','rabbit','dragon','snake','horse','goat'];
+const ELEMENT_ORDER=['metal','metal','water','water','wood','wood','fire','fire','earth','earth'];
+function chineseZodiac(y){const ak=CHINESE_ORDER[y%12],ek=ELEMENT_ORDER[y%10];return CHINESE_T[ak][LANG]+' ('+ELEMENT_T[ek][LANG]+')'}
+function moonPhase(date){let year=date.getFullYear(),month=date.getMonth()+1,day=date.getDate();if(month<3){year--;month+=12}++month;let c=365.25*year,e=30.6*month,jd=c+e+day-694039.09;jd/=29.5305882;let b=Math.trunc(jd);jd-=b;b=Math.round(jd*8);if(b>=8)b=0;return b}
+const MOON_ORDER=['new','waxcres','first','waxgib','full','wangib','last','wancres'];
+function moonLabel(i){const k=MOON_ORDER[i];return MOON_EMOJI[k]+' '+MOON_T[k][LANG]}
+const PRESIDENTS=[['George Washington','1789-04-30'],['John Adams','1797-03-04'],['Thomas Jefferson','1801-03-04'],['James Madison','1809-03-04'],['James Monroe','1817-03-04'],['John Quincy Adams','1825-03-04'],['Andrew Jackson','1829-03-04'],['Martin Van Buren','1837-03-04'],['William Henry Harrison','1841-03-04'],['John Tyler','1841-04-04'],['James K. Polk','1845-03-04'],['Zachary Taylor','1849-03-04'],['Millard Fillmore','1850-07-09'],['Franklin Pierce','1853-03-04'],['James Buchanan','1857-03-04'],['Abraham Lincoln','1861-03-04'],['Andrew Johnson','1865-04-15'],['Ulysses S. Grant','1869-03-04'],['Rutherford B. Hayes','1877-03-04'],['James A. Garfield','1881-03-04'],['Chester A. Arthur','1881-09-19'],['Grover Cleveland','1885-03-04'],['Benjamin Harrison','1889-03-04'],['Grover Cleveland','1893-03-04'],['William McKinley','1897-03-04'],['Theodore Roosevelt','1901-09-14'],['William Howard Taft','1909-03-04'],['Woodrow Wilson','1913-03-04'],['Warren G. Harding','1921-03-04'],['Calvin Coolidge','1923-08-02'],['Herbert Hoover','1929-03-04'],['Franklin D. Roosevelt','1933-03-04'],['Harry S. Truman','1945-04-12'],['Dwight D. Eisenhower','1953-01-20'],['John F. Kennedy','1961-01-20'],['Lyndon B. Johnson','1963-11-22'],['Richard Nixon','1969-01-20'],['Gerald Ford','1974-08-09'],['Jimmy Carter','1977-01-20'],['Ronald Reagan','1981-01-20'],['George H. W. Bush','1989-01-20'],['Bill Clinton','1993-01-20'],['George W. Bush','2001-01-20'],['Barack Obama','2009-01-20'],['Donald Trump','2017-01-20'],['Joe Biden','2021-01-20'],['Donald Trump','2025-01-20']];
+function presidentOn(dateStr){let name=PRESIDENTS[0][0];for(const[n,s]of PRESIDENTS){if(s<=dateStr)name=n;else break}return name}
+const PRICES=[[1940,.18,.10,3920,850,.30,3],[1945,.21,.09,4625,950,.40,3],[1950,.27,.14,8450,1510,.75,3],[1955,.29,.18,10950,1900,.75,3],[1960,.31,.20,12700,2600,1.00,4],[1965,.31,.21,13600,2650,1.25,5],[1970,.36,.24,17000,3450,1.60,6],[1975,.57,.33,39300,4950,2.10,13],[1980,1.19,.50,68700,7200,3.10,15],[1985,1.09,.79,82800,9700,3.35,22],[1990,1.16,.70,123900,16000,3.80,25],[1995,1.15,.84,133900,15500,4.25,32],[2000,1.51,1.00,169000,22000,5.15,33],[2005,2.27,1.20,240900,27800,5.15,37],[2010,2.79,1.38,272900,29200,7.25,44],[2015,2.45,1.40,296400,33500,7.25,49],[2020,2.17,1.50,336900,38000,7.25,55],[2023,3.50,1.90,428000,48000,7.25,66],[2026,3.60,2.10,430000,49000,7.25,73]];
+function interpYear(table,year){if(year<=table[0][0])return table[0];if(year>=table[table.length-1][0])return table[table.length-1];for(let i=0;i<table.length-1;i++){const[y0]=table[i],[y1]=table[i+1];if(year>=y0&&year<=y1){const tt=(year-y0)/(y1-y0);const r=[year];for(let k=1;k<table[i].length;k++)r.push(table[i][k]+(table[i+1][k]-table[i][k])*tt);return r}}return table[table.length-1]}
+function priceRow(year){return interpYear(PRICES,year)}
+const WORLDPOP=[[1940,2.3],[1945,2.4],[1950,2.5],[1955,2.8],[1960,3.0],[1965,3.3],[1970,3.7],[1975,4.1],[1980,4.4],[1985,4.8],[1990,5.3],[1995,5.7],[2000,6.1],[2005,6.5],[2010,6.9],[2015,7.3],[2020,7.8],[2023,8.0],[2026,8.2]];
+function popRow(year){return interpYear(WORLDPOP,year)}
+function birthstoneLabel(mo){const k=GEM_T[mo-1];return (GEM_WORDS[k]&&GEM_WORDS[k][LANG])||GEM_WORDS[k].en}
+function flowerLabel(mo){const k=FLOWER_KEYS[mo-1];return (FLOWER_WORDS[k]&&FLOWER_WORDS[k][LANG])||FLOWER_WORDS[k].en}
+function generation(y){
+ let k='genalpha';
+ if(y<1928)k='greatest';else if(y<1946)k='silent';else if(y<1965)k='boomer';else if(y<1981)k='genx';else if(y<1997)k='millennial';else if(y<2013)k='genz';
+ return GEN_T[k][LANG]}
+function seasonLabel(m){let k='autumn';if(m===12||m===1||m===2)k='winter';else if(m>=3&&m<=5)k='spring';else if(m>=6&&m<=8)k='summer';return SEASON_EMOJI[k]+' '+SEASON_T[k][LANG]}
+const FALLBACK_SONGS={1955:['Rock Around the Clock','Bill Haley & His Comets'],1956:['Heartbreak Hotel','Elvis Presley'],1957:['All Shook Up','Elvis Presley'],1958:['Volare','Domenico Modugno'],1959:['The Battle of New Orleans','Johnny Horton'],1960:['Theme from A Summer Place','Percy Faith'],1961:["Tossin' and Turnin'",'Bobby Lewis'],1962:['Stranger on the Shore','Mr. Acker Bilk'],1963:['Sugar Shack','Jimmy Gilmer & the Fireballs'],1964:['I Want to Hold Your Hand','The Beatles'],1965:['Wooly Bully','Sam the Sham & the Pharaohs'],1966:['The Ballad of the Green Berets','SSgt Barry Sadler'],1967:['To Sir with Love','Lulu'],1968:['Hey Jude','The Beatles'],1969:['Sugar, Sugar','The Archies'],1970:['Bridge over Troubled Water','Simon & Garfunkel'],1971:['Joy to the World','Three Dog Night'],1972:['The First Time Ever I Saw Your Face','Roberta Flack'],1973:['Tie a Yellow Ribbon Round the Ole Oak Tree','Dawn feat. Tony Orlando'],1974:['The Way We Were','Barbra Streisand'],1975:['Love Will Keep Us Together','Captain & Tennille'],1976:['Silly Love Songs','Wings'],1977:["Best of My Love",'Emotions'],1978:['Shadow Dancing','Andy Gibb'],1979:['My Sharona','The Knack'],1980:['Call Me','Blondie'],1981:['Bette Davis Eyes','Kim Carnes'],1982:['Physical','Olivia Newton-John'],1983:['Every Breath You Take','The Police'],1984:['When Doves Cry','Prince'],1985:['Careless Whisper','Wham! / George Michael'],1986:["That's What Friends Are For",'Dionne Warwick & Friends'],1987:['Walk Like an Egyptian','The Bangles'],1988:['Faith','George Michael'],1989:['Look Away','Chicago'],1990:['Hold On','Wilson Phillips'],1991:["(Everything I Do) I Do It for You",'Bryan Adams'],1992:['End of the Road','Boyz II Men'],1993:['I Will Always Love You','Whitney Houston'],1994:['The Sign','Ace of Base'],1995:["Gangsta's Paradise",'Coolio'],1996:['Macarena','Los Del Rio'],1997:['Candle in the Wind 1997','Elton John'],1998:['Too Close','Next'],1999:['Believe','Cher'],2000:['Breathe','Faith Hill'],2001:['Hanging by a Moment','Lifehouse'],2002:['How You Remind Me','Nickelback'],2003:['In da Club','50 Cent'],2004:['Yeah!','Usher feat. Lil Jon & Ludacris'],2005:['We Belong Together','Mariah Carey'],2006:['Bad Day','Daniel Powter'],2007:['Irreplaceable','Beyoncé'],2008:['Low','Flo Rida feat. T-Pain'],2009:['Boom Boom Pow','The Black Eyed Peas'],2010:['Tik Tok','Kesha'],2011:['Rolling in the Deep','Adele'],2012:['Somebody That I Used to Know','Gotye feat. Kimbra'],2013:['Thrift Shop','Macklemore & Ryan Lewis feat. Wanz'],2014:['Happy','Pharrell Williams'],2015:['Uptown Funk','Mark Ronson feat. Bruno Mars'],2016:['Love Yourself','Justin Bieber'],2017:['Shape of You','Ed Sheeran'],2018:["God's Plan",'Drake'],2019:['Old Town Road','Lil Nas X feat. Billy Ray Cyrus'],2020:['Blinding Lights','The Weeknd'],2021:['Levitating','Dua Lipa'],2022:['Heat Waves','Glass Animals'],2023:['Last Night','Morgan Wallen'],2024:['Lose Control','Teddy Swims']};
+function fallbackSong(y){for(let k=y;k>=1955;k--)if(FALLBACK_SONGS[k])return FALLBACK_SONGS[k];return FALLBACK_SONGS[2024]}
+
+async function billboard(dateStr){
+ const vdR=await fetch('https://raw.githubusercontent.com/mhollingshead/billboard-hot-100/main/valid_dates.json');
+ if(!vdR.ok)throw 0;
+ const vd=(await vdR.json()).sort();
+ if(dateStr<vd[0])return{before1958:true};
+ let best=vd[0];for(const d of vd){if(d<=dateStr)best=d;else break}
+ const chR=await fetch('https://raw.githubusercontent.com/mhollingshead/billboard-hot-100/main/date/'+best+'.json');
+ if(!chR.ok)throw 0;
+ const ch=await chR.json();
+ const top=ch.data.find(x=>x.this_week===1)||ch.data[0];
+ return{weekOf:best,song:top.song,artist:top.artist};
+}
+
+/* ---------- render ---------- */
+let lastDV=null,lastTV=null,lastBillboard=null;
+const addCard=(host,title,big,sub)=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+title+'</h3><div class="big">'+big+'</div>'+(sub?'<div class="sub">'+sub+'</div>':'');host.appendChild(c);return c};
+let liveT=null;
+const LOCALE_MAP={en:'en-US',he:'he-IL',es:'es-ES',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT',ru:'ru-RU',ar:'ar-SA',zh:'zh-CN'};
+function render(){
+ const dv=lastDV,tv=lastTV;
+ const birth=new Date(dv+'T'+tv+':00');
+ const [y,mo,da]=dv.split('-').map(Number);
+ $('results').style.display='block';
+ clearInterval(liveT);
+
+ const g1=$('g1');g1.innerHTML='';
+ addCard(g1,'🎵 '+t('song'),'<span class="spin"></span>…','');
+ addCard(g1,'☀️ '+t('western'),westernZodiac(mo,da),'');
+ addCard(g1,'🧧 '+t('chinese'),chineseZodiac(y),'');
+ addCard(g1,'🌙 '+t('moon'),moonLabel(moonPhase(birth)),'');
+ addCard(g1,'🏛 '+t('president'),presidentOn(dv),t('presidentSub'));
+ addCard(g1,'📅 '+t('dow'),birth.toLocaleDateString(LOCALE_MAP[LANG]||'en-US',{weekday:'long'}),'');
+ const songCard=g1.children[0];
+
+ function showSong(res){
+  if(!res){songCard.innerHTML='';return}
+  if(res.before1958){
+   const[s,a]=fallbackSong(1955);
+   songCard.innerHTML='<h3>🎵 '+t('song')+'</h3><div class="big">'+t('before100')+'</div><div class="sub">'+t('before100sub')+' "'+s+'" — '+a+'</div>';return}
+  songCard.innerHTML='<h3>🎵 '+t('song')+'</h3><div class="big">"'+res.song+'"</div><div class="sub">'+res.artist+' — '+res.weekOf+'</div>';
+ }
+ if(lastBillboard){showSong(lastBillboard)}
+ else{
+  billboard(dv).then(res=>{lastBillboard=res;showSong(res)}).catch(()=>{
+   const[s,a]=fallbackSong(y);lastBillboard={song:s,artist:a,weekOf:y+' '+t('offline')};showSong(lastBillboard);
+  });
+ }
+
+ const g2=$('g2');g2.innerHTML='';
+ const liveCard=document.createElement('div');liveCard.className='card';g2.appendChild(liveCard);
+ function tick(){
+  const now=new Date(),ms=now-birth,s=ms/1000;
+  const days=Math.floor(s/86400),years=(s/31557600).toFixed(6);
+  const heartbeats=Math.floor(s/60*70),breaths=Math.floor(s/60*16);
+  liveCard.innerHTML='<h3>💓 '+t('alive')+'</h3><div class="big ticker">'+days.toLocaleString()+' '+t('days')+' — '+Math.floor(s/3600).toLocaleString()+'h</div>'+
+   '<div class="sub">≈ '+Number(years).toLocaleString(undefined,{maximumFractionDigits:2})+' '+t('years')+'</div>'+
+   '<div class="sub" style="margin-top:8px">❤️ ~'+heartbeats.toLocaleString()+' '+t('heartbeats')+'</div>'+
+   '<div class="sub">🫁 ~'+breaths.toLocaleString()+' '+t('breaths')+'</div>';
+ }
+ tick();liveT=setInterval(tick,1000);
+
+ const g3=$('g3');g3.innerHTML='';
+ addCard(g3,'💎 '+t('birthstone'),birthstoneLabel(mo),'');
+ addCard(g3,'🌸 '+t('flower'),flowerLabel(mo),'');
+ addCard(g3,'🧬 '+t('generation'),generation(y),'');
+ addCard(g3,'🍁 '+t('season'),seasonLabel(mo),'');
+ const now=new Date();let next=new Date(now.getFullYear(),mo-1,da);if(next<now)next=new Date(now.getFullYear()+1,mo-1,da);
+ const dleft=Math.ceil((next-now)/86400000);
+ addCard(g3,'🎂 '+t('nextBday'),dleft+' '+t('days'),'');
+
+ const thenW=t('then'), todayW=t('now');
+ const g4=$('g4');g4.innerHTML='';
+ const pr=priceRow(y);
+ const now2=priceRow(new Date().getFullYear());
+ const priceCard=addCard(g4,'💵 '+t('prices')+' '+y,'','');
+ priceCard.querySelector('.big').remove();
+ const tbl=document.createElement('table');tbl.className='price';
+ const rows=[['⛽',pr[1].toFixed(2)+'',now2[1].toFixed(2)+'','$'],['🍞',pr[2].toFixed(2),now2[2].toFixed(2),'$'],['🏠',Math.round(pr[3]).toLocaleString(),Math.round(now2[3]).toLocaleString(),'$'],['🚗',Math.round(pr[4]).toLocaleString(),Math.round(now2[4]).toLocaleString(),'$'],['💼',pr[5].toFixed(2)+'/hr',now2[5].toFixed(2)+'/hr','$'],['✉️',Math.round(pr[6])+'¢',Math.round(now2[6])+'¢','']];
+ tbl.innerHTML='<tr><td></td><td style="color:#b8a8d9;font-weight:600">'+thenW+'</td><td style="color:#b8a8d9;font-weight:600">'+todayW+'</td></tr>'+
+  rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[3]+r[1]+'</td><td>'+r[3]+r[2]+'</td></tr>').join('');
+ priceCard.appendChild(tbl);
+ const note=document.createElement('div');note.className='note';note.textContent=t('pricesNote');priceCard.appendChild(note);
+
+ const popPr=popRow(y),popNow=popRow(now.getFullYear());
+ const popCard=addCard(g4,'🌍 '+t('worldPop'),'','');
+ popCard.querySelector('.big').remove();
+ const ptbl=document.createElement('table');ptbl.className='price';
+ ptbl.innerHTML='<tr><td></td><td style="color:#b8a8d9;font-weight:600">'+thenW+'</td><td style="color:#b8a8d9;font-weight:600">'+todayW+'</td></tr>'+
+  '<tr><td>🌍</td><td>'+popPr[1].toFixed(1)+'B</td><td>'+popNow[1].toFixed(1)+'B</td></tr>';
+ popCard.appendChild(ptbl);
+
+ const g5=$('g5');g5.innerHTML='';
+ const hoursAlive=(now-birth)/3600000,orbitKm=hoursAlive*107208;
+ addCard(g5,'🚀 '+t('orbit'),(orbitKm/1e9).toLocaleString(undefined,{maximumFractionDigits:2})+' '+(LANG==='en'?'billion km':LANG==='he'?'מיליארד ק"מ':'mld km'),t('orbitSub'));
+ const dogY=((now-birth)/31557600000*7);
+ addCard(g5,'🐕 '+t('dogYears'),dogY.toLocaleString(undefined,{maximumFractionDigits:1})+' '+t('years'),'');
+ const ageYears=(now-birth)/31557600000;
+ addCard(g5,'♂️ '+t('marsAge'),(ageYears*365.25/687).toLocaleString(undefined,{maximumFractionDigits:2})+' '+t('years'),t('marsSub'));
+ addCard(g5,'☿ '+t('mercuryAge'),(ageYears*365.25/88).toLocaleString(undefined,{maximumFractionDigits:1})+' '+t('years'),'');
+ addCard(g5,'🌕 '+t('fullMoons'),Math.floor((now-birth)/86400000/29.53).toLocaleString(),'');
+ let leaps=0;for(let yy=y;yy<=now.getFullYear();yy++)if((yy%4===0&&yy%100!==0)||yy%400===0)leaps++;
+ addCard(g5,'🔁 '+t('leapYears'),leaps.toLocaleString(),'');
+
+ fetchHistory(mo,da,y);
+}
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+let historyReqId=0;
+async function fetchHistory(mo,da,year){
+ const reqId=++historyReqId;
+ const g6=$('g6');g6.innerHTML='';
+ const mm=String(mo).padStart(2,'0'),dd=String(da).padStart(2,'0');
+ const peopleCard=document.createElement('div');peopleCard.className='card';
+ peopleCard.innerHTML='<h3>🌟 '+t('famousPeople')+'</h3><div class="hlist"><div class="hrow muted"><span class="spin"></span>…</div></div>';
+ g6.appendChild(peopleCard);
+ const eventsCard=document.createElement('div');eventsCard.className='card';
+ eventsCard.innerHTML='<h3>📰 '+t('newsEvents')+'</h3><div class="hlist"><div class="hrow muted"><span class="spin"></span>…</div></div>';
+ g6.appendChild(eventsCard);
+ try{
+  const [bRes,eRes]=await Promise.all([
+   fetch('https://en.wikipedia.org/api/rest_v1/feed/onthisday/births/'+mm+'/'+dd).then(r=>r.json()),
+   fetch('https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/'+mm+'/'+dd).then(r=>r.json())
+  ]);
+  if(reqId!==historyReqId)return;
+  const births=(bRes.births||[]).filter(b=>b.year&&b.year!==year).sort((a,b)=>b.year-a.year).slice(0,8);
+  peopleCard.querySelector('.hlist').innerHTML=births.length?
+   births.map(b=>'<div class="hrow"><b>'+b.year+'</b> — '+escapeHtml(b.text)+'</div>').join(''):
+   '<div class="hrow muted">'+t('noData')+'</div>';
+
+  const allEvents=eRes.events||[];
+  let sameYear=allEvents.filter(e=>e.year===year);
+  let usedYear=sameYear.length>0;
+  let events=usedYear?sameYear.slice(0,6):allEvents.slice().sort(()=>Math.random()-0.5).slice(0,6).sort((a,b)=>b.year-a.year);
+  eventsCard.querySelector('.hlist').innerHTML=events.length?
+   events.map(e=>'<div class="hrow"><b>'+e.year+'</b> — '+escapeHtml(e.text)+'</div>').join('')+
+   (usedYear?'':'<div class="note">'+t('historyNote')+'</div>'):
+   '<div class="hrow muted">'+t('noData')+'</div>';
+ }catch(err){
+  if(reqId!==historyReqId)return;
+  peopleCard.querySelector('.hlist').innerHTML='<div class="hrow muted">'+t('historyOffline')+'</div>';
+  eventsCard.querySelector('.hlist').innerHTML='<div class="hrow muted">'+t('historyOffline')+'</div>';
+ }
+}
+
+let csTimer=null,csSkipped=false;
+function runCutscene(done){
+ const phases=['cs1','cs2','cs3','cs4','cs5','cs6','cs7','cs8','cs9'];
+ const totalMs=17000+Math.floor(Math.random()*3000); // 17-20s
+ const stepMs=totalMs/phases.length;
+ const el=$('cutscene'),txt=$('csText'),bar=$('csBar'),skip=$('csSkip');
+ csSkipped=false;
+ skip.textContent=t('csSkip');
+ el.classList.add('show');
+ let i=0;
+ const showPhase=()=>{
+  const key=phases[i];
+  txt.style.opacity=0;
+  setTimeout(()=>{if(csSkipped)return;txt.textContent=t(key);txt.style.opacity=1},150);
+  bar.style.width=(((i+1)/phases.length)*100)+'%';
+  i++;
+  if(i<phases.length){csTimer=setTimeout(showPhase,stepMs)}
+  else{csTimer=setTimeout(finish,stepMs)}
+ };
+ const finish=()=>{
+  if(csSkipped)return;
+  el.classList.remove('show');
+  bar.style.width='0%';
+  done();
+ };
+ showPhase();
+ skip.onclick=()=>{
+  csSkipped=true;
+  clearTimeout(csTimer);
+  el.classList.remove('show');
+  bar.style.width='0%';
+  done();
+ };
+}
+$('go').onclick=()=>{
+ const dv=$('bdate').value,tv=$('btime').value||'12:00';
+ $('err').textContent='';
+ if(!dv){$('err').textContent=t('errDate');return}
+ const birth=new Date(dv+'T'+tv+':00');
+ if(isNaN(birth)||birth>new Date()){$('err').textContent=t('errInvalid');return}
+ lastDV=dv;lastTV=tv;lastBillboard=null;
+ runCutscene(render);
+};
+</script>
+</body></html>
